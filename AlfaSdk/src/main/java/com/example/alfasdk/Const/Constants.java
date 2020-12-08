@@ -107,6 +107,7 @@ public class Constants {
     public  static final String RESESRCH_PORTAL_IP="203.17577.130";
     public  static  String LOGIN_RESPONSE="";
     public  static  String SYMBOL_RESPONSE="";
+    public  static  String MARKET_RESPONSE="";
 
     /**
      * UnComment following block for local server

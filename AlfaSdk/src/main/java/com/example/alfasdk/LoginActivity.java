@@ -434,6 +434,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
                                 SharedPreferences.Editor prefsEditor = mPrefs.edit();
                                 Gson gson1 = new Gson();
                                 String marketResponse = gson1.toJson(result);
+                                Constants.MARKET_RESPONSE=marketResponse;
                                 prefsEditor.putString("marketResult", marketResponse);
                                 prefsEditor.apply();
 
@@ -442,7 +443,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 
 
                                 Intent intent = new Intent(context, MainActivity.class);
-                                intent.putExtra("marketResponse", marketResponse);
+                                intent.putExtra("marketResponse", Constants.MARKET_RESPONSE);
                                 intent.putExtra("symbolResult", Constants.SYMBOL_RESPONSE);
                                 intent.putExtra("loginResult", Constants.LOGIN_RESPONSE);
                                 startActivity(intent);
@@ -506,7 +507,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 
         Gson gson = new Gson();
         SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
-        String loginJson = mPrefs.getString("loginResult", "");
+        String loginJson =Constants.LOGIN_RESPONSE;
         loginResponse = gson.fromJson(loginJson, LoginResponse.class);
 
 
