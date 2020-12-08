@@ -22,6 +22,5 @@ public class MainActivityApp extends LoginActivity {
                 sdkInterface.login(v);
             }
         });
-        SdkInterface sdkInterface;
     }
 }
