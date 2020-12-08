@@ -84,6 +84,7 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 //        ButterKnife.bind(this, view);
+        acc_list=view.findViewById(R.id.acc_listView);
         acc_list.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         cash=view.findViewById(R.id.cashtext);

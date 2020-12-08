@@ -45,10 +45,11 @@ public class FeedServer extends AsyncTask<String, String, String> {
         Preferences preferences = StoreBox.create(context, Preferences.class);
 
         Gson gson = new Gson();
-//        LoginResponse loginResult = gson.fromJson(preferences.getLoginResult(), LoginResponse.class);
+        LoginResponse loginResult;
+        loginResult = gson.fromJson(Constants.LOGIN_RESPONSE, LoginResponse.class);
 
-        serverPort = "loginResult.getResponse().getFeedPort()";
-        String feedIP = "loginResult.getResponse().getFeedIP()";
+        serverPort = loginResult.getResponse().getFeedPort();
+        String feedIP = loginResult.getResponse().getFeedIP();
 
         try {
             serverIpAddress = new ArrayList<>(Arrays.asList(feedIP.split(",")));

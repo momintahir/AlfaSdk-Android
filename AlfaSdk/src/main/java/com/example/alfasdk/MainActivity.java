@@ -6,6 +6,7 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
@@ -123,25 +125,28 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     private boolean isActive = true;
     private AtomicInteger notificationID = new AtomicInteger(0);
     String useridEncoded;
-
+    SharedPreferences mPrefs;
+    TextView tvText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mPrefs = getPreferences(MODE_PRIVATE);
         connectMessageServer();
 
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tvText=findViewById(R.id.tvText);
+        tvText.setText("asd");
+        toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        preferences = StoreBox.create(this, Preferences.class);
+//        preferences = StoreBox.create(this, Preferences.class);
 
         initSessionData();
 
@@ -162,6 +167,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         getSymbolsFromServer();
         connectFeed();
     }
+
     private void getSymbolsFromServer() {
 
         JsonObject login_obj = new JsonObject();
@@ -187,7 +193,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
     }
 
-    public void portfolioWatchRequest(String clientcode){
+    public void portfolioWatchRequest(String clientcode) {
         JsonObject request_obj = new JsonObject();
 
         request_obj.addProperty("MSGTYPE", Constants.PORTFOLIO_CASH_REQUEST_IDENTIFIER);
@@ -215,7 +221,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
     public void connectFeed() {
 
-        try{
+        try {
             JsonObject feed_obj = new JsonObject();
 
             String action = Constants.FEED_LOGIN_MESSAGE_IDENTIFIER;
@@ -225,8 +231,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             feed_obj.addProperty("userId", user);
 
             new FeedServer(context).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, feed_obj.toString());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -268,7 +273,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                 navMenuList.add(new Menu("Market", R.drawable.iconmarket2x, false));
             }
             if (TrnCodes.contains("OM19")) {
-             //   navMenuList.add(new Menu("Exchange", R.drawable.marketicon2x, false));
+                //   navMenuList.add(new Menu("Exchange", R.drawable.marketicon2x, false));
                 navMenuList.add(new Menu("Index Watch", R.drawable.marketicon2x, false));
             }
             if (TrnCodes.contains("OM24")) {
@@ -319,8 +324,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             if (TrnCodes.contains("OM07")) {
                 optionItems.add("Summary");
             }
-            if (TrnCodes.contains("OM20"))
-            {
+            if (TrnCodes.contains("OM20")) {
                 optionItems.add("Charts");
             }
 
@@ -340,8 +344,8 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         } else {
             navMenuList.add(new Menu("Market", R.drawable.iconmarket2x, false));
 
-       //     navMenuList.add(new Menu("Exchanges", R.drawable.marketicon2x, false));
-                 navMenuList.add(new Menu("Market Indices", R.drawable.marketicon2x, false));
+            //     navMenuList.add(new Menu("Exchanges", R.drawable.marketicon2x, false));
+            navMenuList.add(new Menu("Market Indices", R.drawable.marketicon2x, false));
         }
         if (TrnCodes.contains("OM24")) {
             optionItems.add("Research");
@@ -362,10 +366,24 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
         Gson gson = new Gson();
 
-        loginResponse = gson.fromJson(preferences.getLoginResult(), LoginResponse.class);
-        marketResponse = gson.fromJson(preferences.getMarketResult(), MarketResponse.class);
-        symbolsResponse = gson.fromJson(preferences.getSymbolResult(), SymbolsResponse.class);
+//        loginResponse = gson.fromJson(preferences.getLoginResult(), LoginResponse.class);
+//        marketResponse = gson.fromJson(preferences.getMarketResult(), MarketResponse.class);
+//        symbolsResponse = gson.fromJson(preferences.getSymbolResult(), SymbolsResponse.class);
+        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
 
+        Intent intent = getIntent();
+
+        String marketJson = intent.getStringExtra("marketResponse");
+        String loginResult = intent.getStringExtra("loginResult");
+        String symbolJson = intent.getStringExtra("symbolResult");
+
+
+//        String loginJson = mPrefs.getString("loginResult", "");
+//        String marketJson = mPrefs.getString("marketResult", "");
+//        String symbolJson = mPrefs.getString("symbolResult", "");
+        loginResponse = gson.fromJson(loginResult, LoginResponse.class);
+        marketResponse = gson.fromJson(marketJson, MarketResponse.class);
+        symbolsResponse = gson.fromJson(symbolJson, SymbolsResponse.class);
 
     }
 
@@ -529,7 +547,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
 
 
-
         ft.addToBackStack(backStateName);
         ft.commit();
 
@@ -667,13 +684,13 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             e.printStackTrace();
         }
 
-        preferences.removeLoginResult(R.string.key_login);
-        preferences.removeMarketResult(R.string.key_symbols);
-        preferences.removeSymbolResult(R.string.key_market);
-        preferences.removeEvents(R.string.key_events);
-        preferences.removeRememberPin(R.string.key_remember_pin);
-        preferences.removeUsername(R.string.key_username);
-        preferences.removePassword(R.string.key_password);
+//        preferences.removeLoginResult(R.string.key_login);
+//        preferences.removeMarketResult(R.string.key_symbols);
+//        preferences.removeSymbolResult(R.string.key_market);
+//        preferences.removeEvents(R.string.key_events);
+//        preferences.removeRememberPin(R.string.key_remember_pin);
+//        preferences.removeUsername(R.string.key_username);
+//        preferences.removePassword(R.string.key_password);
 
     }
 
@@ -702,7 +719,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             case "Research":
                 ResearchPortalFragment fragment = ResearchPortalFragment.newInstance(sym.getSymbol());
                 replaceFragment(fragment, true, true);
-               // callingResearchPortalService(Constants.RESEARCH_PORTAL_URL);
+                // callingResearchPortalService(Constants.RESEARCH_PORTAL_URL);
                 break;
         }
     }
@@ -843,7 +860,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
                         case Constants.LOGIN_MESSAGE_RESPONSE: {
 
-                            preferences.setLoginResult(resp);
+//                            preferences.setLoginResult(resp);
                             loginResponse = gson.fromJson(preferences.getLoginResult(), LoginResponse.class);
                             connectFeed();
 
@@ -857,8 +874,17 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
                                 if (result.getCode().equals("200")) {
 
-                                    preferences.setSymbolResult(gson.toJson(result));
-                                    symbolsResponse = gson.fromJson(preferences.getSymbolResult(), SymbolsResponse.class);
+//                                    preferences.setSymbolResult(gson.toJson(result));
+                                    SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+                                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                    Gson gson1 = new Gson();
+                                    String json = gson1.toJson(result);
+                                    prefsEditor.putString("symbolResult", json);
+                                    prefsEditor.apply();
+
+                                    String symbolJson = mPrefs.getString("symbolResult", "");
+                                    symbolsResponse = gson.fromJson(symbolJson, SymbolsResponse.class);
+//                                    symbolsResponse = gson.fromJson(preferences.getSymbolResult(), SymbolsResponse.class);
                                     marketFragment.setSearchSymbols();
 
                                 } else {
@@ -1353,16 +1379,13 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 //                        Alert.show(context, "Trade Confirmation", response.get("remarks").getAsString());
                             if (loginResponse.getResponse().getUsertype() == 0 ||
                                     loginResponse.getResponse().getUsertype() == 3) {
-                                if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString()))
-                                {
+                                if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString())) {
                                     sendNotification("Trade Confirmation", response.get("remarks").getAsString());
 
                                 }
 
 
-                            }
-                            else
-                            {
+                            } else {
                                 sendNotification("Trade Confirmation", response.get("remarks").getAsString());
 
                             }
@@ -1432,16 +1455,13 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             if (json.get("code").getAsString().equals("200")) {
                                 if (loginResponse.getResponse().getUsertype() == 0 ||
                                         loginResponse.getResponse().getUsertype() == 3) {
-                                    if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString()))
-                                    {
+                                    if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString())) {
                                         Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
 
                                     }
 
 
-                                }
-                                else
-                                {
+                                } else {
                                     Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
 
                                 }
@@ -1590,7 +1610,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
             } catch (Exception e) {
                 e.printStackTrace();
-             //   Alert.showErrorAlert(context);
+                //   Alert.showErrorAlert(context);
 
 
             }
@@ -1666,7 +1686,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         request_obj.addProperty("orderMarket", order.getMarket());
         request_obj.addProperty("orderExchange", loginResponse.getResponse().getExchange());
         request_obj.addProperty("orderVolume", order.getVolume() + "");
-        request_obj.addProperty("client",order.getClient());
+        request_obj.addProperty("client", order.getClient());
 
         if (order.getSide().equals("B") || order.getSide().equals("Buy")) {
             request_obj.addProperty("orderSide", "B");
@@ -1819,8 +1839,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
         request_obj.addProperty("MSGTYPE", Constants.PORTFOLIO_REQUEST_IDENTIFIER);
         request_obj.addProperty("exchange", loginResponse.getResponse().getExchange());
-        request_obj.addProperty("client",clientcode);
-
+        request_obj.addProperty("client", clientcode);
 
 
         if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
@@ -2017,9 +2036,9 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     public void changePasswordRequest(String oldPassword, String newPassword) {
 
         JsonObject request_obj = new JsonObject();
-        EnctyptionUtils enctyptionUtils=new EnctyptionUtils();
+        EnctyptionUtils enctyptionUtils = new EnctyptionUtils();
         try {
-            useridEncoded=enctyptionUtils.encrypt(loginResponse.getResponse().getUserId());
+            useridEncoded = enctyptionUtils.encrypt(loginResponse.getResponse().getUserId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2117,7 +2136,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         request_obj.addProperty("exchange", symbol.getExchangeCode());
 
 
-
         if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
 
             Map<Integer, String> map = new HashMap<>();
@@ -2199,8 +2217,8 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
         request_obj.addProperty("MSGTYPE", Constants.PAYMENT_REQ_IDENTIFIER1);
         request_obj.addProperty("exchangeCode", loginResponse.getResponse().getExchange());
-        request_obj.addProperty("client",client);
-        Log.d("paymentresponse",request_obj.toString());
+        request_obj.addProperty("client", client);
+        Log.d("paymentresponse", request_obj.toString());
 
         if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
 

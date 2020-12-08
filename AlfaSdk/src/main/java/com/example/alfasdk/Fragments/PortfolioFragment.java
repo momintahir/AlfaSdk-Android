@@ -2,6 +2,7 @@ package com.example.alfasdk.Fragments;
 
 
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 
 import android.text.Editable;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -77,7 +79,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 //    @BindView(R.id.piechart)
     PieChart pieChart;
 
-    Button cancel_search1;
+    ImageView cancel_search1;
     ArrayList<String> clientlist;
     public static final int[] chartColors = {
             Color.rgb(193, 37, 82), Color.rgb(255, 102, 0), Color.rgb(245, 199, 0),

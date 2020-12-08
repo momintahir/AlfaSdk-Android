@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 
 import net.orange_box.storebox.StoreBox;
@@ -37,6 +39,8 @@ import net.orange_box.storebox.StoreBox;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -282,6 +286,8 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
     @Override
     public void onMessageReceived(String action, String resp) {
 
+        String symbolResult = null;
+        String loginResult = null;
         Gson gson = new Gson();
 
         JsonParser jsonParser = new JsonParser();
@@ -308,8 +314,24 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
                         if (result != null) {
 
                             if (result.getCode().equals("200")) {
+                                SharedPreferences  mPrefs = getSharedPreferences("appData",MODE_PRIVATE);
+                                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                Gson gson1 = new Gson();
+                                loginResult = gson1.toJson(result);
+                                Constants.LOGIN_RESPONSE=loginResult;
+                                prefsEditor.putString("loginResult", loginResult);
+                                prefsEditor.putString("username","Demo320");
+                                prefsEditor.putString("password","Demo123");
+                                prefsEditor.commit();
+                                prefsEditor.apply();
 
-                                startActivity(new Intent(this,EmptyActivity.class));
+
+
+//                                Gson gson = new Gson();
+//                                Type type = new TypeToken<ArrayList<PatientStatus>>() {
+//                                }.getType();
+
+//                                startActivity(new Intent(this,EmptyActivity.class));
 
 //                                preferences.setLoginResult(gson.toJson(result));
 //
@@ -351,7 +373,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
                                 }
 //                                preferences.removeEvents(R.string.key_events);
 
-//                                Event.add(context, new Event(System.currentTimeMillis(), result.getResponse().getUserId() + " logged in successfully."));
+                                Event.add(context, new Event(System.currentTimeMillis(), result.getResponse().getUserId() + " logged in successfully."));
 
 
 //                                getSymbolsFromServer();
@@ -377,9 +399,16 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 
                             if (result.getCode().equals("200")) {
 
-                                preferences.setSymbolResult(gson.toJson(result));
+                                SharedPreferences  mPrefs = getSharedPreferences("appData",MODE_PRIVATE);
+                                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                Gson gson1 = new Gson();
+                                 symbolResult = gson1.toJson(result);
+                                 Constants.SYMBOL_RESPONSE=symbolResult;
+                                prefsEditor.putString("symbolResult", symbolResult);
+                                prefsEditor.apply();
+//                                preferences.setSymbolResult(gson.toJson(result));
 
-                                getMarket();
+//                                getMarket();
 
                             } else {
 
@@ -401,11 +430,22 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 
 
                             if (result.getCode().equals("200")) {
+                                SharedPreferences  mPrefs = getSharedPreferences("appData",MODE_PRIVATE);
+                                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                Gson gson1 = new Gson();
+                                String marketResponse = gson1.toJson(result);
+                                prefsEditor.putString("marketResult", marketResponse);
+                                prefsEditor.apply();
 
-                                preferences.setMarketResult(gson.toJson(result));
+//                                preferences.setMarketResult(gson.toJson(result));
 
-                                startActivity(new Intent(context, MainActivity.class));
-                                finish();
+
+
+                                Intent intent = new Intent(context, MainActivity.class);
+                                intent.putExtra("marketResponse", marketResponse);
+                                intent.putExtra("symbolResult", Constants.SYMBOL_RESPONSE);
+                                intent.putExtra("loginResult", Constants.LOGIN_RESPONSE);
+                                startActivity(intent);
 
                             } else {
 
@@ -462,21 +502,26 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
     }
 
     private void getMarket() {
+        LoginResponse loginResponse;
 
         Gson gson = new Gson();
+        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
+        String loginJson = mPrefs.getString("loginResult", "");
+        loginResponse = gson.fromJson(loginJson, LoginResponse.class);
 
 
-//        String clientcode = gson.fromJson(preferences.getLoginResult(), LoginResponse.class).getResponse().getClient();
+        String clientcode = loginResponse.getResponse().getClient();
 
         Log.d("clientcode", "clientcode: " + "clientcode");
 
         JsonObject login_obj = new JsonObject();
 
         login_obj.addProperty("MSGTYPE", Constants.SUBSCRIPTION_LIST_REQUEST_IDENTIFIER);
-        login_obj.addProperty("userId", user);
-        login_obj.addProperty("client", "clientcode");
+//        login_obj.addProperty("userId", user);
+        login_obj.addProperty("userId", "Demo320");
+        login_obj.addProperty("client", clientcode);
 
-
+        connectMessageServer();
         if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
 
             Map<Integer, String> map = new HashMap<>();

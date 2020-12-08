@@ -1,7 +1,9 @@
 package com.example.alfasdk.Models;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
+import com.example.alfasdk.Models.LoginModel.LoginResponse;
 import com.example.alfasdk.Util.Preferences;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -21,6 +23,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import static net.orange_box.storebox.enums.PreferencesMode.MODE_PRIVATE;
 
 /**
  * Developed by Hasham.Tahir on 1/29/2016.
@@ -54,7 +58,10 @@ public class Event {
     public static void add(Context context, Event event) {
 
         Gson gson = new Gson();
-        Preferences preferences = StoreBox.create(context, Preferences.class);
+//        Preferences preferences = StoreBox.create(context, Preferences.class);
+        SharedPreferences mPrefs = context.getSharedPreferences("appData",Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+
         Type listType = new TypeToken<List<Event>>() {
         }.getType();
         ArrayList<Event> eventArrayList = new ArrayList<>();
@@ -65,11 +72,16 @@ public class Event {
 
 //        Log.d("add", "serialized: " + serialized);
 
-        String events = preferences.getEvents();
+        String events = mPrefs.getString("events", "");
 
-        if (events == null) {
+//        String events = mPrefs.getEvents();
 
-            preferences.setEvents(serialized);
+        if (events.equalsIgnoreCase("")) {
+
+//            preferences.setEvents(serialized);
+            prefsEditor.putString("events", serialized);
+            prefsEditor.apply();
+
         } else {
 
 
@@ -88,7 +100,10 @@ public class Event {
 
 //            Log.d("add", "yourList: " + gson.toJson(yourList, listType));
 
-            preferences.setEvents(gson.toJson(yourList, listType));
+//            prefsEditor.setEvents(gson.toJson(yourList, listType));
+            prefsEditor.putString("events", gson.toJson(yourList, listType));
+            prefsEditor.apply();
+
         }
 
 
@@ -98,11 +113,15 @@ public class Event {
     public static List<Event> getAllEvents(Context context) {
 
         Gson gson = new Gson();
-        Preferences preferences = StoreBox.create(context, Preferences.class);
+//        Preferences preferences = StoreBox.create(context, Preferences.class);
+        SharedPreferences mPrefs = context.getSharedPreferences("appData",Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Type listType = new TypeToken<List<Event>>() {
         }.getType();
+        String loginJson = mPrefs.getString("events", "");
+        List<Event> evs = gson.fromJson(loginJson, listType);
 
-        List<Event> evs = gson.fromJson(preferences.getEvents(), listType);
+//        List<Event> evs = gson.fromJson(preferences.getEvents(), listType);
 
         Collections.sort(evs, new EventComparatorByTime());
 

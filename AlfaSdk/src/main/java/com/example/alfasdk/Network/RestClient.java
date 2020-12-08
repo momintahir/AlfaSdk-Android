@@ -55,9 +55,9 @@ public class RestClient {
                 public void onResponse(JSONObject jsonObject) {
                     LogResponse(TAG, "response: " + jsonObject.toString());
 
-                    if (!isBackground && pd.isShowing()) {
+                    if (!isBackground ) {
 
-                        pd.dismiss();
+//                        pd.dismiss();
 
                     }
 

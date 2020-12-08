@@ -105,6 +105,8 @@ public class Constants {
     public  static final String RESEARCH_PORTAL_URL="http://www.capitalstake.com/service/authenticate";
     public  static final String RESESRCH_PORTAL_CLIENT="atif.khan";
     public  static final String RESESRCH_PORTAL_IP="203.17577.130";
+    public  static  String LOGIN_RESPONSE="";
+    public  static  String SYMBOL_RESPONSE="";
 
     /**
      * UnComment following block for local server

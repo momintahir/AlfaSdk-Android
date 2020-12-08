@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -94,7 +95,7 @@ public class UserProfileFragment extends Fragment {
 //    @BindView(R.id.search_list_view1)
     LinearLayout listSearch_view1;
 
-    Button cancel_search1;
+    ImageView cancel_search1;
     boolean isSetInitialText = false;
     private SearchClientListAdapter searchClientListAdapter;
     ArrayList<String> clientlist;
