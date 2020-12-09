@@ -169,7 +169,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
 // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.ledRed));
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.alfaRed));
 
         getSupportFragmentManager().addOnBackStackChangedListener(getListener());
 
@@ -364,7 +364,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
         optionItems.add("Delete");
 
-        navMenuList.add(new Menu("Logout", R.drawable.logout2x, false));
+//        navMenuList.add(new Menu("Logout", R.drawable.logout2x, false));
 
 
         navigationView.setLayoutManager(new LinearLayoutManager(context));
@@ -401,6 +401,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -414,14 +415,11 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                     }
 
 
-                } else {
-
-                    logoutAlert();
                 }
 
 
             } else {
-                fragmentManager.popBackStack();
+                finish();
             }
 
         }
@@ -475,9 +473,11 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             replaceFragment(marketFragment, true, false);
         } else if (item.getIc_resource() == R.drawable.orderstatus2x) {
             replaceFragment(orderStatsFragment, true, false);
-        } else if (item.getIc_resource() == R.drawable.logout2x) {
-            logoutAlert();
-        } else if (item.getIc_resource() == R.drawable.events2x) {
+        }
+//        else if (item.getIc_resource() == R.drawable.logout2x) {
+//            logoutAlert();
+//        }
+        else if (item.getIc_resource() == R.drawable.events2x) {
             replaceFragment(EventsFragment.newInstance(), true, false);
         } else if (item.getIc_resource() == R.drawable.linkicon2x) {
             replaceFragment(LinksFragment.newInstance(), true, false);

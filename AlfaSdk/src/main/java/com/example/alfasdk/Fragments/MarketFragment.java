@@ -45,6 +45,7 @@ import com.example.alfasdk.Util.HSnackBar;
 import com.example.alfasdk.Util.HToast;
 import com.example.alfasdk.Util.MyItemAnimator;
 import com.example.alfasdk.Util.Util;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -87,7 +88,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     private BroadcastReceiver mFeedReceiver;
     private MenuItem feedMenuItem;
     private boolean isConnected;
-
+    private FloatingActionButton backbtn;
     public MarketFragment() {
         // Required empty public constructor
     }
@@ -109,7 +110,14 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         cancel_search=view.findViewById(R.id.cancel_search);
         left_arrow=view.findViewById(R.id.left_arrow);
         right_arrow=view.findViewById(R.id.right_arrow);
+        backbtn=view.findViewById(R.id.backbtn);
 
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
 
         left_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
