@@ -47,7 +47,6 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
 
 
-import net.orange_box.storebox.StoreBox;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -143,7 +142,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
 
         portfolio_list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        preferences = StoreBox.create(getActivity(), Preferences.class);
+//        preferences = StoreBox.create(getActivity(), Preferences.class);
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 2) {
 

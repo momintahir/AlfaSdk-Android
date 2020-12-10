@@ -3,8 +3,7 @@ package com.example.alfasdk.Util;
 
 import com.example.alfasdk.R;
 
-import net.orange_box.storebox.annotations.method.KeyByResource;
-import net.orange_box.storebox.annotations.method.RemoveMethod;
+
 
 /**
  * Developed by Hasham.Tahir on 1/27/2016.

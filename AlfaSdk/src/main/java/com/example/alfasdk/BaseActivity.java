@@ -21,7 +21,6 @@ import com.example.alfasdk.Util.Loading;
 import com.example.alfasdk.Util.Preferences;
 import com.google.gson.JsonObject;
 
-import net.orange_box.storebox.StoreBox;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -54,7 +53,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        preferences = StoreBox.create(this, Preferences.class);
+//        preferences = StoreBox.create(this, Preferences.class);
 
         loading = new Loading(context, "Please wait...");
 

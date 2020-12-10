@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.alfasdk.Const.Constants;
 import com.example.alfasdk.Fragments.ChartDurationFragment;
 import com.example.alfasdk.Fragments.ChartTypeFragment;
-import com.example.alfasdk.Fragments.ChartViewFragment;
+//import com.example.alfasdk.Fragments.ChartViewFragment;
 import com.example.alfasdk.Models.ChartsModel.ChartsResponse;
 import com.example.alfasdk.Models.MarketModel.MarketSymbol;
 import com.example.alfasdk.Util.Alert;
@@ -28,9 +28,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("ConstantConditions")
-public class ChartsActivity extends BaseActivity implements
-        ChartDurationFragment.OnChartDurationListener, ChartTypeFragment.OnChartTypeListener
-        , ChartViewFragment.OnChartViewListener {
+//public class ChartsActivity extends BaseActivity implements
+//        ChartDurationFragment.OnChartDurationListener, ChartTypeFragment.OnChartTypeListener
+//        , ChartViewFragment.OnChartViewListener {
+
+
+    public class ChartsActivity extends BaseActivity implements
+            ChartDurationFragment.OnChartDurationListener, ChartTypeFragment.OnChartTypeListener
+             {
 
     @SuppressWarnings("FieldCanBeLocal")
     private final String TAG = "ChartsActivity";
@@ -102,36 +107,36 @@ public class ChartsActivity extends BaseActivity implements
 
         selectedChartType = type;
 
-        replaceFragment(ChartViewFragment.newInstance(type, marketSymbol.getSymbol()), true);
+//        replaceFragment(ChartViewFragment.newInstance(type, marketSymbol.getSymbol()), true);
 
         Log.d("ChartType", type + "");
 
     }
 
-    @Override
-    public void onChartViewInteraction(int action) {
-
-        switch (action) {
-
-            case 0: {//get chart data from server
-
-                JsonObject request_obj = new JsonObject();
-
-                request_obj.addProperty("MSGTYPE", Constants.CHARTS_REQ_IDENTIFIER);
-                request_obj.addProperty("symbol", marketSymbol.getSymbol());
-                request_obj.addProperty("exchange", exchange);
-                request_obj.addProperty("market", marketSymbol.getMarket());
-                request_obj.addProperty("duration", selectedDuration);
-
-                Map<Integer, String> map = new HashMap<>();
-                map.put(1, Constants.CHARTS_REQ_IDENTIFIER);
-                map.put(2, request_obj.toString());
-
-                write(map, true);
-            }
-            break;
-        }
-    }
+//    @Override
+//    public void onChartViewInteraction(int action) {
+//
+//        switch (action) {
+//
+//            case 0: {//get chart data from server
+//
+//                JsonObject request_obj = new JsonObject();
+//
+//                request_obj.addProperty("MSGTYPE", Constants.CHARTS_REQ_IDENTIFIER);
+//                request_obj.addProperty("symbol", marketSymbol.getSymbol());
+//                request_obj.addProperty("exchange", exchange);
+//                request_obj.addProperty("market", marketSymbol.getMarket());
+//                request_obj.addProperty("duration", selectedDuration);
+//
+//                Map<Integer, String> map = new HashMap<>();
+//                map.put(1, Constants.CHARTS_REQ_IDENTIFIER);
+//                map.put(2, request_obj.toString());
+//
+//                write(map, true);
+//            }
+//            break;
+//        }
+//    }
 
     @Override
     public void onMessageReceived(String action, String resp) {
@@ -163,18 +168,18 @@ public class ChartsActivity extends BaseActivity implements
 
                             if (result.getCode().equals("200")) {
 
-                                final ChartViewFragment frag = (ChartViewFragment)
-                                        fragmentManager.findFragmentByTag(
-                                                ChartViewFragment.class.getName());
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (frag != null) {
-                                            frag.setResult(result);
-                                        }
-                                    }
-                                });
+//                                final ChartViewFragment frag = (ChartViewFragment)
+//                                        fragmentManager.findFragmentByTag(
+//                                                ChartViewFragment.class.getName());
+//
+//                                runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        if (frag != null) {
+//                                            frag.setResult(result);
+//                                        }
+//                                    }
+//                                });
 
                             } else {
                                 Alert.show(context, getString(R.string.app_name), result.getError());

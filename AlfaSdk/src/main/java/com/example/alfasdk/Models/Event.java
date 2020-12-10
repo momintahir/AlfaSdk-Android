@@ -13,7 +13,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 
-import net.orange_box.storebox.StoreBox;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
@@ -24,7 +23,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import static net.orange_box.storebox.enums.PreferencesMode.MODE_PRIVATE;
 
 /**
  * Developed by Hasham.Tahir on 1/29/2016.

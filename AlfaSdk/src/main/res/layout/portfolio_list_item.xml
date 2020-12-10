@@ -116,7 +116,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:layout_marginLeft="@dimen/_7sdp"
+            android:layout_marginLeft="7dp"
             android:orientation="vertical">
 
 
@@ -179,10 +179,10 @@
 
     <ImageView
         android:id="@+id/ivArrow"
-        android:layout_width="@dimen/_12sdp"
-        android:layout_height="@dimen/_11sdp"
+        android:layout_width="12dp"
+        android:layout_height="11dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/_75sdp"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginRight="75dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/arrow_green"/>
 </RelativeLayout>

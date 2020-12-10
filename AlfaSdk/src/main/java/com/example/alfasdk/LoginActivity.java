@@ -34,7 +34,6 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 
-import net.orange_box.storebox.StoreBox;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -102,7 +101,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
         etName.setText("Softech");
         etPass.setText("afs987");
 
-        preferences = StoreBox.create(this, Preferences.class);
+//        preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {

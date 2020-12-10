@@ -27,8 +27,8 @@
 
                 <ImageView
                     android:id="@+id/cash_imageview"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:src="@drawable/cash_one">
 
@@ -36,8 +36,8 @@
 
                 <ImageView
                     android:id="@+id/custody_imageview"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:src="@drawable/custody">
 
@@ -45,8 +45,8 @@
 
                 <ImageView
                     android:id="@+id/capital_imageview"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:src="@drawable/capital_pic">
 
@@ -88,7 +88,7 @@
                 </TextView>
 
                 <TextView
-                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

@@ -13,7 +13,6 @@ import com.example.alfasdk.Util.Preferences;
 import com.google.gson.Gson;
 
 
-import net.orange_box.storebox.StoreBox;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -42,7 +41,7 @@ public class FeedServer extends AsyncTask<String, String, String> {
 
         this.context = context;
 
-        Preferences preferences = StoreBox.create(context, Preferences.class);
+//        Preferences preferences = StoreBox.create(context, Preferences.class);
 
         Gson gson = new Gson();
         LoginResponse loginResult;
