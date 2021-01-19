@@ -27,7 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfasdk.Adapters.NetShareCustodyAdapter;
 import com.example.alfasdk.Adapters.SearchClientListAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.NetShareModel.NetShareCustody;
 import com.example.alfasdk.R;
 import com.example.alfasdk.Util.Alert;
@@ -138,16 +138,16 @@ public class NetSharesFragment extends Fragment implements NetShareCustodyAdapte
 
         textView_dateTimeNow.setText(currentDateTimeString);
 
-        textView_clientCode.setText(MainActivity.loginResponse.getResponse().getClient());
-        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
+        textView_clientCode.setText(MyMainActivity.loginResponse.getResponse().getClient());
+        if (MyMainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
-            clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
+            clientcode.setText(MyMainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
             setAsOnDate(null);
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
-            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+        } else if (MyMainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 3) {
+            clientlist = new ArrayList<String>(MyMainActivity.loginResponse.getResponse().getClientlist());
             Log.d("clientlist",clientlist.toString());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
             listSearch1.setAdapter(searchClientListAdapter);
@@ -207,7 +207,7 @@ public class NetSharesFragment extends Fragment implements NetShareCustodyAdapte
         textView_dateTime.setText(String.format("As On: %s", dateToDisplay));
 
 
-        ((MainActivity) getActivity()).netSharesRequest(dateToDisplay,clientcode.getText().toString());
+        ((MyMainActivity) getActivity()).netSharesRequest(dateToDisplay,clientcode.getText().toString());
     }
 
     public void setValues(List<NetShareCustody> netShareCustodies) {
@@ -249,6 +249,6 @@ public class NetSharesFragment extends Fragment implements NetShareCustodyAdapte
     @Override
     public void onNetShareClick(NetShareCustody mItem) {
 
-        ((MainActivity) getActivity()).goToNetShareDetail(mItem);
+        ((MyMainActivity) getActivity()).goToNetShareDetail(mItem);
     }
 }

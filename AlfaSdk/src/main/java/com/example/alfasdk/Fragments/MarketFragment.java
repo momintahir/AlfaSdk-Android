@@ -35,7 +35,7 @@ import com.example.alfasdk.Adapters.MarketAdapter;
 import com.example.alfasdk.Adapters.SearchListAdapter;
 import com.example.alfasdk.Adapters.TopPagerAdapter;
 import com.example.alfasdk.Const.Constants;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.MarketModel.Exchange;
 import com.example.alfasdk.Models.MarketModel.MarketSymbol;
 import com.example.alfasdk.Models.SymbolsModel.Symbol;
@@ -164,13 +164,13 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         linearLayoutManager.setAutoMeasureEnabled(false);
 
         try{
-            Collections.sort(MainActivity.marketResponse.getResponse().getSymbols(), new Comparator<MarketSymbol>() {
+            Collections.sort(MyMainActivity.marketResponse.getResponse().getSymbols(), new Comparator<MarketSymbol>() {
                 @Override
                 public int compare(MarketSymbol e1, MarketSymbol e) {
                     return e1.getSymbol().compareTo(e.getSymbol());
                 }
             });
-            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
+            marketAdapter = new MarketAdapter(getActivity(), MyMainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
 
         }
         catch (Exception e){
@@ -189,7 +189,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     public void setSearchSymbols() {
 //        Log.d("MarketFragment","search");
         searchKeywordsList.clear();
-        searchKeywordsList.addAll(MainActivity.symbolsResponse.getResponse().getSymbols());
+        searchKeywordsList.addAll(MyMainActivity.symbolsResponse.getResponse().getSymbols());
         searchAdapter = new SearchListAdapter(getContext(), searchKeywordsList);
         Log.d("search_debug", "setSearchSymbols: setting adapter with " + searchKeywordsList.size());
         listSearch.setAdapter(searchAdapter);
@@ -212,7 +212,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         if (item.getItemId() == R.id.action_feed_status) {
 //            Log.d("MarketFragment", "status clicked");
             if (!isConnected) {
-                ((MainActivity) getActivity()).connectFeed();
+                ((MyMainActivity) getActivity()).connectFeed();
             }
             return true;
         }
@@ -224,7 +224,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         Log.d("search_debug", "onResume: ");
         // when fragment goes onPause state, it clears the last of search symbols
         // readding those symbols in onResume
-        if(MainActivity.symbolsResponse != null)
+        if(MyMainActivity.symbolsResponse != null)
             setSearchSymbols();
 
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
@@ -239,7 +239,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         if (shouldReload) {
 
-            ((MainActivity) getActivity()).getMarket();
+            ((MyMainActivity) getActivity()).getMarket();
 
             shouldReload = false;
         }
@@ -249,13 +249,13 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         if (isReloaded) {
 //            Log.d("MarketFragment", "isReloaded: loaded ");
 //            marketSymbolList = new ArrayList<>(MainActivity.marketResponse.getResponse().getSymbols());
-            Collections.sort(MainActivity.marketResponse.getResponse().getSymbols(), new Comparator<MarketSymbol>() {
+            Collections.sort(MyMainActivity.marketResponse.getResponse().getSymbols(), new Comparator<MarketSymbol>() {
                 @Override
                 public int compare(MarketSymbol e1, MarketSymbol e) {
                     return e1.getSymbol().compareTo(e.getSymbol());
                 }
             });
-            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
+            marketAdapter = new MarketAdapter(getActivity(), MyMainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
             marketListView.setAdapter(marketAdapter);
 
             isReloaded = false;
@@ -276,7 +276,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         marketListView.setItemAnimator(new MyItemAnimator());
 
-        pagerAdapter = new TopPagerAdapter(getActivity(), MainActivity.marketResponse.getResponse().getExchanges(), mPager);
+        pagerAdapter = new TopPagerAdapter(getActivity(), MyMainActivity.marketResponse.getResponse().getExchanges(), mPager);
 
         mPager.setAdapter(pagerAdapter);
 
@@ -387,7 +387,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
                     isConnected = intent.getBooleanExtra("isConnected", false);
                     updateFeedServerStatus(isConnected);
                     try {
-                        ((MainActivity) getActivity()).showFeedDisconnectAlert();
+                        ((MyMainActivity) getActivity()).showFeedDisconnectAlert();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -397,7 +397,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(mFeedReceiver,
                 new IntentFilter(Constants.FEED_SERVER_BROADCAST));
-        ((MainActivity) getActivity()).exchangesRequest();
+        ((MyMainActivity) getActivity()).exchangesRequest();
 
     }
 
@@ -455,9 +455,9 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     private boolean symbolAlreadyAdded(Symbol symToCompare) {
 
 
-        for (int j = 0; j < MainActivity.marketResponse.getResponse().getSymbols().size(); j++) {
+        for (int j = 0; j < MyMainActivity.marketResponse.getResponse().getSymbols().size(); j++) {
 
-            MarketSymbol existingSym = MainActivity.marketResponse.getResponse().getSymbols().get(j);
+            MarketSymbol existingSym = MyMainActivity.marketResponse.getResponse().getSymbols().get(j);
 
 //            Log.d("updateFeed", "symToCompare: " + symToCompare.getSymbol() + " "
 //                    + " " + symToCompare.getMarket() + " " + symToCompare.getExchangeCode());
@@ -524,11 +524,11 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
                 if (postionToRemove > -1) {
 
 //                    marketSymbolList.remove(postionToRemove);
-                    MainActivity.marketResponse.getResponse().getSymbols().remove(postionToRemove);
+                    MyMainActivity.marketResponse.getResponse().getSymbols().remove(postionToRemove);
 
 //                    marketSymbolList =  new ArrayList<>( MainActivity.marketResponse.getResponse().getSymbols());
 
-                    marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
+                    marketAdapter = new MarketAdapter(getActivity(), MyMainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
 
                     marketListView.setAdapter(marketAdapter);
 
@@ -546,17 +546,17 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
 //                marketSymbolList.add(sym);
 
-                MainActivity.marketResponse.getResponse().getSymbols().add(sym);
+                MyMainActivity.marketResponse.getResponse().getSymbols().add(sym);
 
 //                marketSymbolList =  new ArrayList<>( MainActivity.marketResponse.getResponse().getSymbols());
 
-                Collections.sort(MainActivity.marketResponse.getResponse().getSymbols(), new Comparator<MarketSymbol>() {
+                Collections.sort(MyMainActivity.marketResponse.getResponse().getSymbols(), new Comparator<MarketSymbol>() {
                     @Override
                     public int compare(MarketSymbol e1, MarketSymbol e) {
                         return e1.getSymbol().compareTo(e.getSymbol());
                     }
                 });
-                marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
+                marketAdapter = new MarketAdapter(getActivity(), MyMainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
 
                 marketListView.setAdapter(marketAdapter);
 
@@ -637,7 +637,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
     private void showOptionsMenu(final MarketSymbol sym, final int position) {
 
-        final String[] stringArray = MainActivity.optionItems.toArray(new String[0]);
+        final String[] stringArray = MyMainActivity.optionItems.toArray(new String[0]);
 
         Util.hideKeyboard(getActivity());
 
@@ -702,7 +702,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     @Override
     public void onMarketItemClick(View caller, MarketSymbol mItem, int position, boolean openTrade) {
         if (openTrade) {
-            ((MainActivity) getActivity()).goToTrade(mItem);
+            ((MyMainActivity) getActivity()).goToTrade(mItem);
         } else {
 //            Log.d("MarketFrag", new Gson().toJson(mItem, MarketSymbol.class));
             showOptionsMenu(mItem, position);

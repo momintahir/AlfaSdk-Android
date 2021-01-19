@@ -35,7 +35,7 @@ import androidx.fragment.app.Fragment;
 import com.example.alfasdk.Adapters.SearchClientListAdapter;
 import com.example.alfasdk.Adapters.SearchListAdapter;
 import com.example.alfasdk.Const.Constants;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.LoginModel.OrdProp;
 import com.example.alfasdk.Models.LoginModel.OrdType;
 import com.example.alfasdk.Models.MarketModel.MarketSymbol;
@@ -146,8 +146,8 @@ public class TradeFragment extends Fragment {
         }
 //        clientlist=new ArrayList<String>(Arrays.asList(MainActivity.loginResponse.getResponse().getClientlist().split("\\s*,\\s*")));
 
-        searchKeywordsList = new ArrayList<>(MainActivity.symbolsResponse.getResponse().getSymbols());
-        clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+        searchKeywordsList = new ArrayList<>(MyMainActivity.symbolsResponse.getResponse().getSymbols());
+        clientlist = new ArrayList<String>(MyMainActivity.loginResponse.getResponse().getClientlist());
         searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
         searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
 
@@ -234,14 +234,14 @@ public class TradeFragment extends Fragment {
 
 
 //        ButterKnife.bind(this, view);
-        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
+        if (MyMainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
-            clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
+            clientcode.setText(MyMainActivity.loginResponse.getResponse().getClient());
             client = clientcode.getText().toString();
             clientcode.setEnabled(false);
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
+        } else if (MyMainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
 
         }
@@ -320,7 +320,7 @@ public class TradeFragment extends Fragment {
 
                 listSearch_view.setVisibility(View.GONE);
                 Symbol symbol = searchKeywordsList.get(position);
-                ((MainActivity) getActivity()).tradeSymbolRequest(symbol);
+                ((MyMainActivity) getActivity()).tradeSymbolRequest(symbol);
 
             }
         });
@@ -394,8 +394,8 @@ public class TradeFragment extends Fragment {
             }
         });
 
-        String TrnCodes = MainActivity.loginResponse.getResponse().getTrnCodes();
-        ordTypes = MainActivity.loginResponse.getResponse().getOrdTypes();
+        String TrnCodes = MyMainActivity.loginResponse.getResponse().getTrnCodes();
+        ordTypes = MyMainActivity.loginResponse.getResponse().getOrdTypes();
 
 
         try {
@@ -417,7 +417,7 @@ public class TradeFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ordProps = MainActivity.loginResponse.getResponse().getOrdProps();
+        ordProps = MyMainActivity.loginResponse.getResponse().getOrdProps();
 
         if (ordTypes != null && ordTypes.size() > 0) {
             textViewOrderType.setText(ordTypes.get(0).getName());
@@ -787,9 +787,9 @@ public class TradeFragment extends Fragment {
         priceField.setText(price.getText().toString());
         valueField.setText(textViewOrderValue.getText().toString());
 
-        if (MainActivity.preferences.getRememberPin()) {
+        if (MyMainActivity.preferences.getRememberPin()) {
 
-            editText.setText(MainActivity.loginResponse.getResponse().getPinCode());
+            editText.setText(MyMainActivity.loginResponse.getResponse().getPinCode());
             checkBox.setChecked(true);
         }
 
@@ -801,12 +801,12 @@ public class TradeFragment extends Fragment {
                         Util.hideKeyboard(getActivity());
 
                         if (checkBox.isChecked()) {
-                            MainActivity.preferences.setRememberPin(true);
+                            MyMainActivity.preferences.setRememberPin(true);
                         } else {
-                            MainActivity.preferences.setRememberPin(false);
+                            MyMainActivity.preferences.setRememberPin(false);
                         }
 
-                        if (editText.getText().toString().equals(MainActivity.loginResponse.getResponse().getPinCode())) {
+                        if (editText.getText().toString().equals(MyMainActivity.loginResponse.getResponse().getPinCode())) {
 
                             proceedToTrade();
 
@@ -874,7 +874,7 @@ public class TradeFragment extends Fragment {
         }
 
 
-        ((MainActivity) getActivity()).tradeOrderRequest(request_obj);
+        ((MyMainActivity) getActivity()).tradeOrderRequest(request_obj);
 
         volume.setText("");
         price.setText("");
@@ -1567,7 +1567,7 @@ public class TradeFragment extends Fragment {
 
 //        Log.d("orderTrade", "" + request_obj.toString());
 
-        ((MainActivity) getActivity()).tradeOrderRequest(request_obj);
+        ((MyMainActivity) getActivity()).tradeOrderRequest(request_obj);
         Util.hideKeyboard(getActivity());
 
         return true;

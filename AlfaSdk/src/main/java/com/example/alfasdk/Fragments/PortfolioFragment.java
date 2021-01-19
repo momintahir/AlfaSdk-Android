@@ -2,7 +2,6 @@ package com.example.alfasdk.Fragments;
 
 
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 
 import android.text.Editable;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfasdk.Adapters.PortfolioAdapter;
 import com.example.alfasdk.Adapters.SearchClientListAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.LoginModel.LoginResponse;
 import com.example.alfasdk.Models.PortfolioModel.Portfolio;
 import com.example.alfasdk.Models.PortfolioModel.PortfolioFooter;
@@ -143,16 +141,16 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
         portfolio_list.setLayoutManager(new LinearLayoutManager(getActivity()));
 //        preferences = StoreBox.create(getActivity(), Preferences.class);
-        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
+        if (MyMainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
-            clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
+            clientcode.setText(MyMainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
-            ((MainActivity) getActivity()).portfolioRequestRequest(clientcode.getText().toString());
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
+            ((MyMainActivity) getActivity()).portfolioRequestRequest(clientcode.getText().toString());
+        } else if (MyMainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
-            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+            clientlist = new ArrayList<String>(MyMainActivity.loginResponse.getResponse().getClientlist());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
         }
         ;
@@ -203,7 +201,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 listSearch_view1.setVisibility(View.GONE);
-                ((MainActivity) getActivity()).portfolioRequestRequest(clientlist.get(position));
+                ((MyMainActivity) getActivity()).portfolioRequestRequest(clientlist.get(position));
                 isSetInitialText = true;
                 clientcode.setText(clientlist.get(position));
 
@@ -395,7 +393,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
     @Override
     public void onPortfolioClick(PortfolioSymbol mItem) {
-        ((MainActivity) getActivity()).showPortFolioDetail(mItem);
+        ((MyMainActivity) getActivity()).showPortFolioDetail(mItem);
 
     }
 }

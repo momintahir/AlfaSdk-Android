@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfasdk.Adapters.PLSummaryAdapter;
 import com.example.alfasdk.Adapters.ScriptDetailAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.PortfolioModel.Portfolio;
 import com.example.alfasdk.Models.PortfolioModel.PortfolioSymbol;
 import com.example.alfasdk.Models.PortfolioWatch.Cash;
@@ -101,12 +101,12 @@ public class PortfolioWatchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_portfolio_watch, container, false);
         init(view);
 
-        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
+        if (MyMainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
-            String clientcode = (MainActivity.loginResponse.getResponse().getClient());
-            ((MainActivity) getActivity()).portfolioRequestRequest(clientcode);
-            ((MainActivity) getActivity()).portfolioWatchRequest(clientcode);
+            String clientcode = (MyMainActivity.loginResponse.getResponse().getClient());
+            ((MyMainActivity) getActivity()).portfolioRequestRequest(clientcode);
+            ((MyMainActivity) getActivity()).portfolioWatchRequest(clientcode);
         }
         else {
             Toast.makeText(getActivity(), "Sorry you cant see this", Toast.LENGTH_SHORT).show();

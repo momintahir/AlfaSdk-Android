@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfasdk.Adapters.CashBookAdapter;
 import com.example.alfasdk.Adapters.SearchClientListAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.CashBookModel.CashBookResponse;
 import com.example.alfasdk.Models.CashBookModel.CashDatum;
 import com.example.alfasdk.R;
@@ -73,16 +73,16 @@ public class CashBookFragment extends Fragment {
         listSearch1=view.findViewById(R.id.search_list1);
         listSearch_view1=view.findViewById(R.id.search_list_view1);
         cancel_search1=view.findViewById(R.id.cancel_search1);
-        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
+        if (MyMainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
-            clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
+            clientcode.setText(MyMainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
-            ((MainActivity) getActivity()).cashBookRequest(clientcode.getText().toString());
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
+            ((MyMainActivity) getActivity()).cashBookRequest(clientcode.getText().toString());
+        } else if (MyMainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
-            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+            clientlist = new ArrayList<String>(MyMainActivity.loginResponse.getResponse().getClientlist());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
         }
 
@@ -151,7 +151,7 @@ public class CashBookFragment extends Fragment {
                 listSearch_view1.setVisibility(View.GONE);
                 isSetInitialText = true;
                 clientcode.setText(clientlist.get(position));
-                ((MainActivity) getActivity()).cashBookRequest(clientlist.get(position));
+                ((MyMainActivity) getActivity()).cashBookRequest(clientlist.get(position));
             }
         });
     }

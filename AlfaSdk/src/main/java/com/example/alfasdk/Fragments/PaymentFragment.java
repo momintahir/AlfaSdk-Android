@@ -23,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.alfasdk.Adapters.SearchClientListAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.PaymentModel.PaymentResponse;
 import com.example.alfasdk.R;
 import com.example.alfasdk.Util.Alert;
@@ -108,16 +108,16 @@ public class PaymentFragment extends Fragment {
 
 
 
-        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
+        if (MyMainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
-            clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
+            clientcode.setText(MyMainActivity.loginResponse.getResponse().getClient());
             client = clientcode.getText().toString();
             clientcode.setEnabled(false);
-            ((MainActivity) getActivity()).getPaymentRequest(clientcode.getText().toString());
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
-            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+            ((MyMainActivity) getActivity()).getPaymentRequest(clientcode.getText().toString());
+        } else if (MyMainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 3) {
+            clientlist = new ArrayList<String>(MyMainActivity.loginResponse.getResponse().getClientlist());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
             listSearch1.setAdapter(searchClientListAdapter);
 
@@ -130,7 +130,7 @@ public class PaymentFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //      edit_username.setText(MainActivity.loginResponse.getResponse().getUserId());
-        edit_exchange.setText(MainActivity.loginResponse.getResponse().getServerCode());
+        edit_exchange.setText(MyMainActivity.loginResponse.getResponse().getServerCode());
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -188,7 +188,7 @@ public class PaymentFragment extends Fragment {
                 listSearch_view1.setVisibility(View.GONE);
                 isSetInitialText = true;
                 clientcode.setText(clientlist.get(position));
-                ((MainActivity) getActivity()).getPaymentRequest(clientcode.getText().toString());
+                ((MyMainActivity) getActivity()).getPaymentRequest(clientcode.getText().toString());
 
             }
         });
@@ -216,7 +216,7 @@ public class PaymentFragment extends Fragment {
             try {
                 int amountVal = Integer.parseInt(amount);
 
-                ((MainActivity) getActivity()).paymentRequest(amountVal, selectedVal,clientcode.getText().toString());
+                ((MyMainActivity) getActivity()).paymentRequest(amountVal, selectedVal,clientcode.getText().toString());
             } catch (Exception e) {
                 e.printStackTrace();
                 Alert.show(getActivity(), getString(R.string.app_name), "Invalid amount entered.");

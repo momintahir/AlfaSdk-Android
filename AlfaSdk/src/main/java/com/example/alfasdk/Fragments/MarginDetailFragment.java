@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 
 import androidx.appcompat.app.ActionBar;
@@ -24,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfasdk.Adapters.MarginDetailAdapter;
 import com.example.alfasdk.Adapters.SearchClientListAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.MarginModel.CustodyHeader;
 import com.example.alfasdk.Models.MarginModel.CustodyList;
 import com.example.alfasdk.Models.MarginModel.MarginDetail;
@@ -101,16 +100,16 @@ public class MarginDetailFragment extends Fragment {
 
         custody_listView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
+        if (MyMainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
-            clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
+            clientcode.setText(MyMainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
-            ((MainActivity) getActivity()).marginRequest(clientcode.getText().toString());
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
+            ((MyMainActivity) getActivity()).marginRequest(clientcode.getText().toString());
+        } else if (MyMainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
-            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+            clientlist = new ArrayList<String>(MyMainActivity.loginResponse.getResponse().getClientlist());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
         }
         return view;
@@ -172,7 +171,7 @@ public class MarginDetailFragment extends Fragment {
                 listSearch_view1.setVisibility(View.GONE);
                 isSetInitialText = true;
                 clientcode.setText(clientlist.get(position));
-                ((MainActivity) getActivity()).marginRequest(clientlist.get(position));
+                ((MyMainActivity) getActivity()).marginRequest(clientlist.get(position));
 
             }
         });

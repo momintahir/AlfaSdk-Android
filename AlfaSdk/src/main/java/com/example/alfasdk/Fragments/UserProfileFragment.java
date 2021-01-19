@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.alfasdk.Adapters.SearchClientListAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.ProfileModel.ProfileResponse;
 import com.example.alfasdk.Models.ProfileModel.Response;
 import com.example.alfasdk.R;
@@ -170,16 +169,16 @@ public class UserProfileFragment extends Fragment {
 
 
 
-        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
+        if (MyMainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
-            clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
+            clientcode.setText(MyMainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
-            ((MainActivity) getActivity()).profileRequest(clientcode.getText().toString());
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
+            ((MyMainActivity) getActivity()).profileRequest(clientcode.getText().toString());
+        } else if (MyMainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
-            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+            clientlist = new ArrayList<String>(MyMainActivity.loginResponse.getResponse().getClientlist());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
         }
         return view;
@@ -236,7 +235,7 @@ public class UserProfileFragment extends Fragment {
                 listSearch_view1.setVisibility(View.GONE);
                 isSetInitialText = true;
                 clientcode.setText(clientlist.get(position));
-                ((MainActivity) getActivity()).profileRequest(clientlist.get(position));
+                ((MyMainActivity) getActivity()).profileRequest(clientlist.get(position));
             }
         });
 

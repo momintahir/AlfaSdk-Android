@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfasdk.Adapters.ExchangeAdapter;
 import com.example.alfasdk.Const.Constants;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.ExchangeModel.Exchange;
 import com.example.alfasdk.Models.ExchangeModel.ExchangeResponse;
 import com.example.alfasdk.R;
@@ -106,7 +106,7 @@ public class ExchangeFragment extends Fragment {
                     onFeedReceived(message);
                 } else {
                     try {
-                        ((MainActivity) getActivity()).showFeedDisconnectAlert();
+                        ((MyMainActivity) getActivity()).showFeedDisconnectAlert();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -116,7 +116,7 @@ public class ExchangeFragment extends Fragment {
 
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(mFeedReceiver,
                 new IntentFilter(Constants.FEED_SERVER_BROADCAST));
-        ((MainActivity) getActivity()).exchangesRequest();
+        ((MyMainActivity) getActivity()).exchangesRequest();
 
     }
 

@@ -24,7 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.alfasdk.Adapters.SearchListAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.MarketModel.MarketSymbol;
 import com.example.alfasdk.Models.SymbolsModel.Symbol;
 import com.example.alfasdk.R;
@@ -131,7 +131,7 @@ QuotesFragment extends Fragment {
             marketSymbol = new Gson().fromJson(json, MarketSymbol.class);
         }
 
-        searchKeywordsList = new ArrayList<>(MainActivity.symbolsResponse.getResponse().getSymbols());
+        searchKeywordsList = new ArrayList<>(MyMainActivity.symbolsResponse.getResponse().getSymbols());
         searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
 
     }
@@ -301,7 +301,7 @@ QuotesFragment extends Fragment {
 //    @OnClick(R.id.trade_btn)
     public void tradeButton() {
 
-        String TrnCodes = MainActivity.loginResponse.getResponse().getTrnCodes();
+        String TrnCodes = MyMainActivity.loginResponse.getResponse().getTrnCodes();
 
 
         int buyflag = 0, sellflag = 0;
@@ -323,7 +323,7 @@ QuotesFragment extends Fragment {
             if (marketSymbol == null) {
                 Alert.show(getActivity(), getString(R.string.app_name), "Please select a symbol first.");
             } else {
-                ((MainActivity) getActivity()).goToTrade(marketSymbol);
+                ((MyMainActivity) getActivity()).goToTrade(marketSymbol);
             }
         }
 

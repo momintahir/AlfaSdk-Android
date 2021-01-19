@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfasdk.Adapters.AccountAdapter;
 import com.example.alfasdk.Adapters.SearchClientListAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.AccountModel.AccountDetail;
 import com.example.alfasdk.Models.AccountModel.AccountFooter;
 import com.example.alfasdk.Models.AccountModel.AccountResponse;
@@ -99,16 +99,16 @@ public class AccountFragment extends Fragment {
         listSearch_view1=view.findViewById(R.id.search_list_view1);
         cancel_search1=view.findViewById(R.id.cancel_search1);
 
-        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
+        if (MyMainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
-            clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
+            clientcode.setText(MyMainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
-            ((MainActivity) getActivity()).accountRequest(clientcode.getText().toString());
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
+            ((MyMainActivity) getActivity()).accountRequest(clientcode.getText().toString());
+        } else if (MyMainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+                MyMainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
-            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+            clientlist = new ArrayList<String>(MyMainActivity.loginResponse.getResponse().getClientlist());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
         }
 
@@ -177,7 +177,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 listSearch_view1.setVisibility(View.GONE);
-                ((MainActivity) getActivity()).accountRequest(clientlist.get(position));
+                ((MyMainActivity) getActivity()).accountRequest(clientlist.get(position));
                 isSetInitialText = true;
                 clientcode.setText(clientlist.get(position));
 

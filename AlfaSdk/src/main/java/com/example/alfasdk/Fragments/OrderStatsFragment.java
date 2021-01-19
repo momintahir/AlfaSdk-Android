@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfasdk.Adapters.OrderStatsAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.OrderStatsModel.OrderStatsResponse;
 import com.example.alfasdk.Models.OrderStatsModel.OrdersList;
 import com.example.alfasdk.R;
@@ -137,7 +137,7 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
         order_status_list.setLayoutManager(new LinearLayoutManager(getActivity()));
         order_status_list.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
 
-        ((MainActivity) getActivity()).orderStatusRequest();
+        ((MyMainActivity) getActivity()).orderStatusRequest();
 
         textViewError.setText("No orders or trades available to display.");
 
@@ -270,9 +270,9 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
         final EditText editText = (EditText) dialogView.findViewById(R.id.editText2);
         final CheckBox checkBox = (CheckBox) dialogView.findViewById(R.id.checkBox);
 
-        if (MainActivity.preferences.getRememberPin()) {
+        if (MyMainActivity.preferences.getRememberPin()) {
 
-            editText.setText(MainActivity.loginResponse.getResponse().getPinCode());
+            editText.setText(MyMainActivity.loginResponse.getResponse().getPinCode());
             checkBox.setChecked(true);
         }
 
@@ -285,12 +285,12 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
 
 
                         if (checkBox.isChecked()) {
-                            MainActivity.preferences.setRememberPin(true);
+                            MyMainActivity.preferences.setRememberPin(true);
                         } else {
-                            MainActivity.preferences.setRememberPin(false);
+                            MyMainActivity.preferences.setRememberPin(false);
                         }
 
-                        if (editText.getText().toString().equals(MainActivity.loginResponse.getResponse().getPinCode())) {
+                        if (editText.getText().toString().equals(MyMainActivity.loginResponse.getResponse().getPinCode())) {
 
 
                             if (deleteListener != null) {
@@ -342,7 +342,7 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
 
             HSnackBar.showMsg(order_status_list, "Successfully removed.");
 
-            ((MainActivity) getActivity()).orderStatusRequest();
+            ((MyMainActivity) getActivity()).orderStatusRequest();
         }
     }
 

@@ -105,7 +105,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener,
+public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener,
         MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest,
         OrderStatsFragment.OnOrderDeleteRequest, QuotesFragment.OnQoutesFragmentListener {
 
@@ -115,7 +115,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     public static Preferences preferences;
     public static ArrayList<String> optionItems = new ArrayList<>();
     final String TAG = "MainActivity";
-    Context context = MainActivity.this;
+    Context context = MyMainActivity.this;
     List<Menu> navMenuList = new ArrayList<>();
     FragmentManager fragmentManager;
     MarketFragment marketFragment = MarketFragment.newInstance();
@@ -135,7 +135,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         mPrefs = getPreferences(MODE_PRIVATE);
         connectMessageServer();
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.my_activity_main);
         tvText=findViewById(R.id.tvText);
         tvText.setText("asd");
         toolbar =  findViewById(R.id.toolbar);
@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
         } catch (NullPointerException e) {
             e.printStackTrace();
-            startActivity(new Intent(context, LoginActivity.class));
+            startActivity(new Intent(context, MyLoginActivity.class));
             finish();
         }
         Window window = this.getWindow();
@@ -236,7 +236,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             JsonObject feed_obj = new JsonObject();
 
             String action = Constants.FEED_LOGIN_MESSAGE_IDENTIFIER;
-            String user = MainActivity.loginResponse.getResponse().getUserId();
+            String user = MyMainActivity.loginResponse.getResponse().getUserId();
 
             feed_obj.addProperty("MSGTYPE", action);
             feed_obj.addProperty("userId", user);
@@ -583,7 +583,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 //                    Constants.LOGOUT_MESSAGE_REQUEST_IDENTIFIER, request_obj.toString());
 
             deleteAll();
-            startActivity(new Intent(context, LoginActivity.class));
+            startActivity(new Intent(context, MyLoginActivity.class));
             finish();
 
         } else {
@@ -601,7 +601,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             @SuppressWarnings("ConstantConditions")
             public void onBackStackChanged() {
 
-                Util.hideKeyboard(MainActivity.this);
+                Util.hideKeyboard(MyMainActivity.this);
 
                 int backStackEntryCount = fragmentManager.getBackStackEntryCount();
                 if (backStackEntryCount > 1) {
@@ -621,7 +621,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                         @Override
                         public void onClick(View v) {
                             drawer.openDrawer(GravityCompat.START);
-                            Util.hideKeyboard(MainActivity.this);
+                            Util.hideKeyboard(MyMainActivity.this);
                         }
                     });
                 }
@@ -771,7 +771,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             @Override
                             public void onRestError(Exception e, String action) {
 
-                                Alert.showErrorAlert(MainActivity.this);
+                                Alert.showErrorAlert(MyMainActivity.this);
                             }
                         }, false, "Please wait..");
             } catch (JSONException e) {
@@ -900,7 +900,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
                                 } else {
 
-                                    Alert.show(MainActivity.this, "", result.getError());
+                                    Alert.show(MyMainActivity.this, "", result.getError());
                                 }
 
                             }
@@ -1413,7 +1413,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                                     .equals("You have been disconnected because you logged in somewhere else.")) {
 
                                 deleteAll();
-                                startActivity(new Intent(context, LoginActivity.class)
+                                startActivity(new Intent(context, MyLoginActivity.class)
                                         .putExtra("discon", true)
                                         .putExtra("message", response.get("message").getAsString()));
                                 finish();
@@ -1436,7 +1436,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                         case Constants.LOGOUT_MESSAGE_RESPONSE: {
 
                             deleteAll();
-                            startActivity(new Intent(context, LoginActivity.class)
+                            startActivity(new Intent(context, MyLoginActivity.class)
                                     .putExtra("discon", true)
                                     .putExtra("message", response.get("remarks").getAsString()));
                             finish();
@@ -1467,13 +1467,13 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                                 if (loginResponse.getResponse().getUsertype() == 0 ||
                                         loginResponse.getResponse().getUsertype() == 3) {
                                     if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString())) {
-                                        Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
+                                        Alert.show(MyMainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
 
                                     }
 
 
                                 } else {
-                                    Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
+                                    Alert.show(MyMainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
 
                                 }
 
@@ -1784,7 +1784,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
         Bundle bundle = new Bundle();
         bundle.putString("sym", new Gson().toJson(marketSymbol, MarketSymbol.class));
-        bundle.putString("exchange", MainActivity.loginResponse.getResponse().getExchange());
+        bundle.putString("exchange", MyMainActivity.loginResponse.getResponse().getExchange());
 
         startActivity(new Intent(context, ChartsActivity.class).putExtras(bundle));
 

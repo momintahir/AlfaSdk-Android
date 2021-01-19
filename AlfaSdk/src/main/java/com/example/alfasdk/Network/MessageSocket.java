@@ -8,7 +8,7 @@ import android.util.Log;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.alfasdk.Const.Constants;
-import com.example.alfasdk.LoginActivity;
+import com.example.alfasdk.MyLoginActivity;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -89,7 +89,7 @@ public class MessageSocket extends Socket {
 
 
     private static void logInAferReconnect() {
-        Intent intent = new Intent(context, LoginActivity.class);
+        Intent intent = new Intent(context, MyLoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);

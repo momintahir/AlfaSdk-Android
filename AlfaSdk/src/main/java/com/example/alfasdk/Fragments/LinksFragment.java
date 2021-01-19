@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.alfasdk.Adapters.LinksAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.LinksModel.Link;
 import com.example.alfasdk.Models.LinksModel.LinksResponse;
 import com.example.alfasdk.R;
@@ -70,7 +70,7 @@ public class LinksFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((MainActivity) getActivity()).linksRequest();
+        ((MyMainActivity) getActivity()).linksRequest();
     }
 
     public void setResult(LinksResponse result) {

@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.alfasdk.Adapters.TopSymbolAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.TopSymModel.TopSymbol;
 import com.example.alfasdk.R;
 import com.example.alfasdk.Util.Alert;
@@ -135,7 +135,7 @@ public class TopSymbolsFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((MainActivity) getActivity()).topSymbolRequest();
+        ((MyMainActivity) getActivity()).topSymbolRequest();
     }
 
     public void setValues(List<TopSymbol> values, String dataType) {

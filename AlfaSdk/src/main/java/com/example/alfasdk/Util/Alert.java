@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.example.alfasdk.LoginActivity;
+import com.example.alfasdk.MyLoginActivity;
 
 
 /**
@@ -62,7 +62,7 @@ public class Alert {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ((Activity) context).finish();
-                                context.startActivity(new Intent(context, LoginActivity.class));
+                                context.startActivity(new Intent(context, MyLoginActivity.class));
 
                             }
                         }

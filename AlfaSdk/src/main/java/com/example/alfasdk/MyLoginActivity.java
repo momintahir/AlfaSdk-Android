@@ -21,7 +21,6 @@ import com.example.alfasdk.Models.MarketModel.MarketResponse;
 import com.example.alfasdk.Models.SymbolsModel.SymbolsResponse;
 import com.example.alfasdk.Network.OnRestClientCallback;
 import com.example.alfasdk.Network.RestClient;
-import com.example.alfasdk.Util.Alert;
 import com.example.alfasdk.Util.EnctyptionUtils;
 import com.example.alfasdk.Util.HSnackBar;
 import com.example.alfasdk.Util.HToast;
@@ -31,15 +30,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
-
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +45,7 @@ import java.util.Map;
  */
 
 
-public class LoginActivity extends BaseActivity implements SdkInterface {
+public class MyLoginActivity extends BaseActivity implements SdkInterface {
 
     private static final String TAG = "LoginActivity";
 //    @BindView(R.id.login_name)
@@ -65,9 +60,8 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 //    @BindView(R.id.login_server)
     TextView etServer;
     Button login_btn;
-    Context context = LoginActivity.this;
+    Context context = MyLoginActivity.this;
     private Preferences preferences;
-    private String user, pas;
     String[] serverNameArray = new String[]{"Primary", "Secondary", "DR"};
     String[] serverUrlArray = new String[]{"terminal1.alfalahtrade.com", "terminal2.alfalahtrade.com", "terminal1.alfalahtrade.net"};
     String userEncoded;
@@ -78,7 +72,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.my_activity_login);
 
 //        ButterKnife.bind(this);
 //        if (BuildConfig.FLAVOR=="alfalahsec") {
@@ -125,7 +119,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callingloginservice(v);
+//                callingloginservice(v);
 
             }
         });
@@ -136,7 +130,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
             public void onClick(View v) {
 
                     finalEtServer.setText("Primary");
-                    final AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                    final AlertDialog.Builder alert = new AlertDialog.Builder(MyLoginActivity.this);
                     alert.setItems(serverNameArray, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -152,24 +146,23 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
         });
     }
 
-    public void callingloginservice(View view) {
-        user = "Demo320";
-        pas = "Demo123";
+    public void callingloginservice(View view,String token,String bankAcctNo,String cnic) {
+
         try {
             EnctyptionUtils enctyptionUtils = new EnctyptionUtils();
-            userEncoded = enctyptionUtils.encrypt(user.trim());
-            passEncoded = enctyptionUtils.encrypt(pas);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (user.length() > 0 && pas.length() > 0) {
+
             final JsonObject login_obj = new JsonObject();
 
             login_obj.addProperty("MSGTYPE", Constants.LOGIN_MESSAGE_IDENTIFIER);
-            login_obj.addProperty("userId", userEncoded);
-            login_obj.addProperty("pswd", passEncoded);
+            login_obj.addProperty("token", token);
+            login_obj.addProperty("bankAcctNo", bankAcctNo);
+            login_obj.addProperty("cnic", cnic);
             // For encryption
-            login_obj.addProperty("Ver", "1.7");
+//            login_obj.addProperty("Ver", "1.7");
 //For encryption
 //            if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
 //
@@ -179,7 +172,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 
                 if (Constants.KASB_API_LOGIN !=null && !Constants.KASB_API_LOGIN.isEmpty()){
                     try {
-                        jsonObject.put("userId", user);
+                        jsonObject.put("userId", "user");
 
                         RestClient.postRequest("login",
                                 context,
@@ -233,7 +226,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
                 }
 
 
-            }
+
 //            else {
 //                try {
 //                    HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
@@ -373,6 +366,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 //                                preferences.removeEvents(R.string.key_events);
 
                                 Event.add(context, new Event(System.currentTimeMillis(), result.getResponse().getUserId() + " logged in successfully."));
+                                getMarket();
 
 
 //                                getSymbolsFromServer();
@@ -441,7 +435,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 
 
 
-                                Intent intent = new Intent(context, MainActivity.class);
+                                Intent intent = new Intent(context, MyMainActivity.class);
                                 intent.putExtra("marketResponse", Constants.MARKET_RESPONSE);
                                 intent.putExtra("symbolResult", Constants.SYMBOL_RESPONSE);
                                 intent.putExtra("loginResult", Constants.LOGIN_RESPONSE);
@@ -511,6 +505,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 
 
         String clientcode = loginResponse.getResponse().getClient();
+        String userId = loginResponse.getResponse().getUserId();
 
         Log.d("clientcode", "clientcode: " + "clientcode");
 
@@ -518,7 +513,7 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 
         login_obj.addProperty("MSGTYPE", Constants.SUBSCRIPTION_LIST_REQUEST_IDENTIFIER);
 //        login_obj.addProperty("userId", user);
-        login_obj.addProperty("userId", "Demo320");
+        login_obj.addProperty("userId", userId);
         login_obj.addProperty("client", clientcode);
 
         connectMessageServer();
@@ -542,8 +537,8 @@ public class LoginActivity extends BaseActivity implements SdkInterface {
 
 
     @Override
-    public void login(View view) {
-        callingloginservice(view);
+    public void login(View view,String token,String bankAcctNo,String cnic) {
+        callingloginservice(view,token,bankAcctNo,cnic);
     }
 }
 

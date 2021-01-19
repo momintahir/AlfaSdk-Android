@@ -14,7 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.R;
 import com.example.alfasdk.Util.EnctyptionUtils;
 import com.example.alfasdk.Util.HToast;
@@ -76,7 +76,7 @@ public class ChangePassFragment extends Fragment {
 
                         if (TextUtils.equals(newPassword, confirmPassword)) {
 
-                            ((MainActivity) getActivity()).changePasswordRequest(oldPassEncoded, newpassEncoded);
+                            ((MyMainActivity) getActivity()).changePasswordRequest(oldPassEncoded, newpassEncoded);
 
                         } else {
                             HToast.showMsg(getActivity(), "Passwords do not match.");

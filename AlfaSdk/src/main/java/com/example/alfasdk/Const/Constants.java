@@ -11,7 +11,8 @@ public class Constants {
     public static final String SIGNUP_MESSAGE_RESPONSE = "SGNS";
     public static final String PORTFOLIO_CASH_REQUEST_RESPONSE ="PCRS";
 
-    public static final String LOGIN_MESSAGE_IDENTIFIER = "LOGN";
+//    public static final String LOGIN_MESSAGE_IDENTIFIER = "LOGN";
+    public static final String LOGIN_MESSAGE_IDENTIFIER = "CLGN";
     public static final String LOGIN_MESSAGE_RESPONSE = "LCNF";
 
     public static final String LOGOUT_MESSAGE_RESPONSE = "LOGT";
@@ -99,10 +100,12 @@ public class Constants {
     /**
      * UnComment following block for Live server
      **/
-    public static String[] serverIpAddress = { "terminal1.alfalahtrade.com", "terminal1.alfalahtrade.com "};
-    public static int[] ports = {5678,5679};
+//    public static String[] serverIpAddress = { "terminal1.alfalahtrade.com", "terminal1.alfalahtrade.com "};
+    public static String[] serverIpAddress = { "203.101.171.179", "203.101.171.179 "};
+//    public static int[] ports = {5678,5679};
+    public static int[] ports = {5678};
     public static final String KASB_API_LOGIN = "";
-    public  static final String RESEARCH_PORTAL_URL="http://www.capitalstake.com/service/authenticate";
+    public  static final String RESEARCH_PORTAL_URL="http://www.e-falah.com/api/v2/service/authenticate";
     public  static final String RESESRCH_PORTAL_CLIENT="atif.khan";
     public  static final String RESESRCH_PORTAL_IP="203.17577.130";
     public  static  String LOGIN_RESPONSE="";

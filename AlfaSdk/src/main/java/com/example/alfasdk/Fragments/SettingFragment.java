@@ -13,7 +13,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.R;
 
 
@@ -50,7 +50,7 @@ public class SettingFragment extends Fragment {
         tvChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) getActivity()).replaceFragment(ChangePassFragment.newInstance(), false, true);
+                ((MyMainActivity) getActivity()).replaceFragment(ChangePassFragment.newInstance(), false, true);
 
             }
         });
@@ -58,7 +58,7 @@ public class SettingFragment extends Fragment {
         tvChangePin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) getActivity()).replaceFragment(ChangePinFragment.newInstance(), false, true);
+                ((MyMainActivity) getActivity()).replaceFragment(ChangePinFragment.newInstance(), false, true);
 
             }
         });

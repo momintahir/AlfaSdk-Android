@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.alfasdk.LoginActivity;
+import com.example.alfasdk.MyLoginActivity;
 import com.example.alfasdk.SdkInterface;
 
-public class MainActivityApp extends LoginActivity {
+public class MainActivityApp extends MyLoginActivity {
 
     Button btnLogin;
     @Override
@@ -18,8 +18,9 @@ public class MainActivityApp extends LoginActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SdkInterface sdkInterface=new LoginActivity();
-                sdkInterface.login(v);
+                SdkInterface sdkInterface=new MyLoginActivity();
+                sdkInterface.login(v,"Token",
+                        "BankAcctNo","cnic");
             }
         });
     }

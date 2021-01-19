@@ -14,7 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.R;
 import com.example.alfasdk.Util.HToast;
 
@@ -67,7 +67,7 @@ public class ChangePinFragment extends Fragment {
 
                         if (TextUtils.equals(newPin, confirmPin)) {
 
-                            ((MainActivity) getActivity()).changePinRequest(oldPin, newPin);
+                            ((MyMainActivity) getActivity()).changePinRequest(oldPin, newPin);
 
                         } else {
                             HToast.showMsg(getActivity(), "Pins do not match.");

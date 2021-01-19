@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.alfasdk.Adapters.SymbolsAdapter;
-import com.example.alfasdk.MainActivity;
+import com.example.alfasdk.MyMainActivity;
 import com.example.alfasdk.Models.SymbolsModel.Symbol;
 import com.example.alfasdk.R;
 
@@ -74,7 +74,7 @@ public class SymbolsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         try {
-            arrayList = new ArrayList<>(MainActivity.symbolsResponse.getResponse().getSymbols());
+            arrayList = new ArrayList<>(MyMainActivity.symbolsResponse.getResponse().getSymbols());
             symbolsAdapter = new SymbolsAdapter(getActivity(), arrayList);
             symbol_list.setAdapter(symbolsAdapter);
             searchField.addTextChangedListener(new TextWatcher() {
@@ -105,7 +105,7 @@ public class SymbolsFragment extends Fragment {
                             symbol=filteredArraylist.get(position);
                         }
 // filtered arraylist
-                    ((MainActivity) getActivity()).addSymbolRequest(symbol);
+                    ((MyMainActivity) getActivity()).addSymbolRequest(symbol);
                 }
             });
         } catch (Exception e) {
