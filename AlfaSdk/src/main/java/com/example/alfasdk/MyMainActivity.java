@@ -1413,9 +1413,7 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
                                     .equals("You have been disconnected because you logged in somewhere else.")) {
 
                                 deleteAll();
-                                startActivity(new Intent(context, MyLoginActivity.class)
-                                        .putExtra("discon", true)
-                                        .putExtra("message", response.get("message").getAsString()));
+
                                 finish();
                             } else {
                                 Alert.show(context, getString(R.string.app_name), response.get("message").getAsString());
