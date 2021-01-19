@@ -43,17 +43,17 @@ public class SettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
-        tvChangePass=view.findViewById(R.id.text_change_pass);
+//        tvChangePass=view.findViewById(R.id.text_change_pass);
         tvChangePin=view.findViewById(R.id.text_change_pin);
 
 
-        tvChangePass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MyMainActivity) getActivity()).replaceFragment(ChangePassFragment.newInstance(), false, true);
-
-            }
-        });
+//        tvChangePass.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((MyMainActivity) getActivity()).replaceFragment(ChangePassFragment.newInstance(), false, true);
+//
+//            }
+//        });
 
         tvChangePin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -109,7 +110,8 @@ public class TradeFragment extends Fragment {
     EditText etDiscVolume;
 //    @BindView(R.id.etOrderReference)
     EditText etOrderReference;
-    Button cancel_search,cancel_search1,tradebutton;
+    Button tradebutton;
+    ImageView cancel_search,cancel_search1;
     private SearchListAdapter searchAdapter;
     private SearchClientListAdapter searchClientListAdapter;
     private MarketSymbol values;

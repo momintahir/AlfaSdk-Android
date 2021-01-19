@@ -21,7 +21,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.alfasdk.Const.ConnectionDetector;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.alfasdk.Const.Constants;
 import com.example.alfasdk.Network.OnRestClientCallback;
 import com.example.alfasdk.Network.RestClient;
@@ -32,6 +39,9 @@ import com.example.alfasdk.Util.Loading;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ResearchPortalFragment extends Fragment {
@@ -103,56 +113,120 @@ public class ResearchPortalFragment extends Fragment {
         }
     }
 
+//    public void callingResearchPortalService(String url) {
+//
+//        if (ConnectionDetector.getInstance(getActivity()).isConnectingToInternet()) {
+//            JSONObject jsonObject = new JSONObject();
+//            try {
+//                jsonObject.put("username", "rashid.irshad");
+//                jsonObject.put("client", Constants.RESESRCH_PORTAL_CLIENT);
+//                jsonObject.put("password", "rashid123");
+//                jsonObject.put("ip", Constants.RESESRCH_PORTAL_IP);
+//
+//                RestClient.postRequest("research_portal",
+//                        getActivity(),
+//                        url,
+//                        jsonObject,
+//                        new OnRestClientCallback() {
+//                            @Override
+//                            public void onRestSuccess(JSONObject response, String action) {
+//                                Log.d(TAG, "onRestSuccess: ");
+//
+//                                try {
+//                                    if (response.getString("response").equals("success")) {
+//
+//                                        String url = response.getString("link");
+//                                        if (symbolName!=null){
+//                                            url=url+ "&symbol=" + symbolName;
+//                                            Log.d("PortalUrl",url);
+//
+//                                        }
+//                                        webView.loadUrl(url);
+//                                    } else {
+//                                        Alert.show(getActivity() , getActivity().getString(R.string.app_name),response.getString("message"));
+//                                    }
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                    HToast.showMsg(getContext(), "Unable to connect to Trading Server please try later or check your network");
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onRestError(Exception e, String action) {
+//                                Log.d(TAG, "onRestError: exception: " + e.getMessage() + " action: " + action);
+//                                Alert.showErrorAlert(getActivity());
+//                            }
+//                        }, false, "Please wait..");
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//                Alert.showErrorAlert(getContext());
+//            }
+//        }
+//
+//
+//    }
+
+
     public void callingResearchPortalService(String url) {
-
-        if (ConnectionDetector.getInstance(getActivity()).isConnectingToInternet()) {
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put("username", "rashid.irshad");
-                jsonObject.put("client", Constants.RESESRCH_PORTAL_CLIENT);
-                jsonObject.put("password", "rashid123");
-                jsonObject.put("ip", Constants.RESESRCH_PORTAL_IP);
-
-                RestClient.postRequest("research_portal",
-                        getActivity(),
-                        url,
-                        jsonObject,
-                        new OnRestClientCallback() {
-                            @Override
-                            public void onRestSuccess(JSONObject response, String action) {
-                                Log.d(TAG, "onRestSuccess: ");
-
-                                try {
-                                    if (response.getString("response").equals("success")) {
-
-                                        String url = response.getString("link");
-                                        if (symbolName!=null){
-                                            url=url+ "&symbol=" + symbolName;
-                                            Log.d("PortalUrl",url);
-
-                                        }
-                                        webView.loadUrl(url);
-                                    } else {
-                                        Alert.show(getActivity() , getActivity().getString(R.string.app_name),response.getString("message"));
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                    HToast.showMsg(getContext(), "Unable to connect to Trading Server please try later or check your network");
-                                }
-                            }
-
-                            @Override
-                            public void onRestError(Exception e, String action) {
-                                Log.d(TAG, "onRestError: exception: " + e.getMessage() + " action: " + action);
-                                Alert.showErrorAlert(getActivity());
-                            }
-                        }, false, "Please wait..");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Alert.showErrorAlert(getContext());
-            }
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("username", "rashid.irshad");
+            jsonObject.put("client", Constants.RESESRCH_PORTAL_CLIENT);
+            jsonObject.put("password", "rashid123");
+            jsonObject.put("ip", Constants.RESESRCH_PORTAL_IP);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
+        // Make request for JSONObject
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST, url, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("TAG", response.toString() + " i am queen");
+                        try {
+                            if (response.getString("response").equals("success")) {
+
+                                String url = response.getString("link");
+                                if (symbolName!=null){
+                                    url=url+ "&symbol=" + symbolName;
+                                    Log.d("PortalUrl",url);
+
+                                }
+                                webView.loadUrl(url);
+                            } else {
+                                Alert.show(getActivity() , getActivity().getString(R.string.app_name),response.getString("message"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("TAG", "Error: " + error.getMessage());
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+
+        };
+
+        // Adding request to request queue
+        Volley.newRequestQueue(getContext()).add(jsonObjReq);
+
     }
+
+
 
     private class AppWebViewClient extends WebViewClient {
 
