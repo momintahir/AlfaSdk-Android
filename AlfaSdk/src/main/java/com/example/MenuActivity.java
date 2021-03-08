@@ -1,6 +1,9 @@
 package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +14,24 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.alfasdk.Adapters.GridViewAdapter;
+import com.example.alfasdk.Fragments.AccountFragment;
+import com.example.alfasdk.Fragments.CashBookFragment;
+import com.example.alfasdk.Fragments.EventsFragment;
+import com.example.alfasdk.Fragments.ExchangeFragment;
+import com.example.alfasdk.Fragments.LinksFragment;
+import com.example.alfasdk.Fragments.MarginDetailFragment;
+import com.example.alfasdk.Fragments.MarketFragment;
+import com.example.alfasdk.Fragments.NetSharesFragment;
+import com.example.alfasdk.Fragments.OrderStatsFragment;
+import com.example.alfasdk.Fragments.PaymentFragment;
+import com.example.alfasdk.Fragments.PortfolioFragment;
+import com.example.alfasdk.Fragments.QuotesFragment;
+import com.example.alfasdk.Fragments.ResearchPortalFragment;
+import com.example.alfasdk.Fragments.SettingFragment;
+import com.example.alfasdk.Fragments.SymbolsFragment;
+import com.example.alfasdk.Fragments.TopSymbolsFragment;
+import com.example.alfasdk.Fragments.TradeFragment;
+import com.example.alfasdk.Fragments.UserProfileFragment;
 import com.example.alfasdk.Models.LoginModel.LoginResponse;
 import com.example.alfasdk.Models.MarketModel.MarketResponse;
 import com.example.alfasdk.Models.Menu;
@@ -26,6 +47,9 @@ public class MenuActivity extends AppCompatActivity implements GridViewAdapter.I
     public static MarketResponse marketResponse;
     public static SymbolsResponse symbolsResponse;
     GridViewAdapter gridViewAdapter;
+    ArrayList<Menu> navMenuList=new ArrayList<>();
+    FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +89,7 @@ public class MenuActivity extends AppCompatActivity implements GridViewAdapter.I
         Log.d("TrnCodes", "TrnCodes: " + TrnCodes);
 
 
-        ArrayList<Menu> navMenuList=new ArrayList<>();
+
         if (TrnCodes.length() > 0) {
 
             if (TrnCodes.contains("OM01")) {
@@ -145,6 +169,69 @@ public class MenuActivity extends AppCompatActivity implements GridViewAdapter.I
 
     @Override
     public void onItemClick(View view, int position) {
+
+        if (navMenuList.get(position).getIc_resource()== R.drawable.iconmarket2x) {
+            replaceFragment(new MarketFragment(), true, false);
+        } else if (navMenuList.get(position).getIc_resource() == R.drawable.orderstatus2x) {
+            replaceFragment(new OrderStatsFragment(), true, false);
+        }
+//        else if (item.getIc_resource() == R.drawable.logout2x) {
+//            logoutAlert();
+//        }
+        else if (navMenuList.get(position).getIc_resource() == R.drawable.events2x) {
+            replaceFragment(EventsFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource() == R.drawable.linkicon2x) {
+            replaceFragment(LinksFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource() == R.drawable.margin2x) {
+            replaceFragment(MarginDetailFragment.newInstance(loginResponse.getResponse().getClient()), true, false);
+        } else if (navMenuList.get(position).getIc_resource() == R.drawable.marketicon2x) {
+            replaceFragment(ExchangeFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource() == R.drawable.quotes2x) {
+            replaceFragment(QuotesFragment.newInstance(null), true, false);
+        } else if (navMenuList.get(position).getIc_resource()== R.drawable.topsymbols2x) {
+            replaceFragment(TopSymbolsFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource()== R.drawable.portfoliosummary2x) {
+            replaceFragment(PortfolioFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource() == R.drawable.symbols2x) {
+            replaceFragment(SymbolsFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource()== R.drawable.profileicon2x) {
+            replaceFragment(UserProfileFragment.newInstance(loginResponse.getResponse().getClient()
+                    , loginResponse.getResponse().getExchange()), true, false);
+        } else if (navMenuList.get(position).getIc_resource()== R.drawable.account2x) {
+            replaceFragment(AccountFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource() == R.drawable.setting2x) {
+            replaceFragment(SettingFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource()== R.drawable.paymentrequest2x) {
+            replaceFragment(PaymentFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource()== R.drawable.trade2x) {
+//            if (isTrnCodeAvailable("OM06") || isTrnCodeAvailable("OM012")) {
+//                replaceFragment(TradeFragment.newInstance(null), true, false);
+//            }
+        } else if (navMenuList.get(position).getIc_resource() == R.drawable.cashbook2x) {
+            replaceFragment(CashBookFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource()== R.drawable.netcustody2x) {
+            replaceFragment(NetSharesFragment.newInstance(), true, false);
+        } else if (navMenuList.get(position).getIc_resource() == R.drawable.research2x) {
+            replaceFragment(ResearchPortalFragment.newInstance(null), true, false);
+        }
+    }
+
+    public void replaceFragment(Fragment fragment, boolean popStack, boolean isChild) {
+
+        String backStateName = fragment.getClass().getName();
+
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        if (isChild) {
+            ft.add(R.id.fragment_container, fragment, backStateName);
+        } else {
+            fragmentManager.popBackStackImmediate();
+            ft.replace(R.id.fragment_container, fragment, backStateName);
+        }
+
+
+        ft.addToBackStack(backStateName);
+        ft.commit();
 
     }
 }
