@@ -204,7 +204,8 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         item2.setVisible(false);
 
         feedMenuItem = menu.findItem(R.id.action_feed_status);
-        feedMenuItem.setVisible(true);
+//        feedMenuItem.setVisible(true);
+        feedMenuItem.setVisible(false);
     }
 
     @Override
@@ -407,9 +408,9 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         try {
             if (isConnected) {
-                feedMenuItem.setIcon(R.drawable.light_green);
+//                feedMenuItem.setIcon(R.drawable.light_green);
             } else {
-                feedMenuItem.setIcon(R.drawable.light_red);
+//                feedMenuItem.setIcon(R.drawable.light_red);
             }
         } catch (Exception e) {
             e.printStackTrace();

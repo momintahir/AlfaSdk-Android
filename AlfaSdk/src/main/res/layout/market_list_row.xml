@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Bid: "
-                android:textColor="#3e5988"
+                android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <TextView
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Offer: "
-                android:textColor="#ffb6c1"
+                android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <TextView

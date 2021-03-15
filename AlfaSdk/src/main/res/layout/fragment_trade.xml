@@ -75,6 +75,7 @@
                 android:layout_marginEnd="6dp"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
+                android:textColorHint="@color/black"
                 android:background="@color/greyBar"
                 android:hint="@string/ClientCode"
                 android:inputType="textCapCharacters|textVisiblePassword|textNoSuggestions"
@@ -118,13 +119,13 @@
                 android:layout_marginEnd="6dp"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
+                android:textColorHint="@color/black"
                 android:background="@color/greyBar"
                 android:hint="@string/symbol"
                 android:inputType="textCapCharacters|textVisiblePassword|textNoSuggestions"
                 android:maxLines="1"
                 android:padding="5dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/textColorPrimary" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/textViewOrderType"
@@ -140,7 +141,7 @@
                 android:maxLines="1"
                 android:padding="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/textColorPrimary" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -172,6 +173,7 @@
                         android:layout_marginEnd="6dp"
                         android:layout_marginRight="6dp"
                         android:layout_weight="1"
+                        android:textColorHint="@color/black"
                         android:background="@color/greyBar"
                         android:hint="@string/enterVolume"
                         android:imeOptions="actionDone"
@@ -180,7 +182,7 @@
                         android:maxLines="1"
                         android:padding="5dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/textColorPrimary" />
+                        android:textColor="@color/black" />
 
                     <EditText
                         android:id="@+id/etPrice"
@@ -189,6 +191,7 @@
                         android:layout_marginLeft="6dp"
                         android:layout_marginStart="6dp"
                         android:layout_weight="1"
+                        android:textColorHint="@color/black"
                         android:background="@color/greyBar"
                         android:hint="@string/enterPrice"
                         android:imeOptions="actionDone"
@@ -196,7 +199,7 @@
                         android:maxLines="1"
                         android:padding="5dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/textColorPrimary" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -230,6 +233,7 @@
                         android:layout_marginEnd="6dp"
                         android:layout_marginRight="6dp"
                         android:layout_weight="1"
+                        android:textColorHint="@color/black"
                         android:background="@color/greyBar"
                         android:hint="@string/enterDiscVolume"
                         android:imeOptions="actionDone"
@@ -237,7 +241,7 @@
                         android:maxLength="8"
                         android:padding="5dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/textColorPrimary" />
+                        android:textColor="@color/black" />
 
                     <EditText
                         android:id="@+id/etTriggerPrice"
@@ -246,13 +250,14 @@
                         android:layout_marginLeft="6dp"
                         android:layout_marginStart="6dp"
                         android:layout_weight="1"
+                        android:textColorHint="@color/black"
                         android:background="@color/greyBar"
                         android:hint="@string/enterTriggerPrice"
                         android:imeOptions="actionDone"
                         android:inputType="numberSigned|numberDecimal"
                         android:padding="5dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/textColorPrimary" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -280,8 +285,9 @@
                         android:drawableRight="@drawable/selector_down_arrow"
                         android:maxLines="1"
                         android:padding="5dp"
+                        android:textColorHint="@color/black"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/textColorPrimary" />
+                        android:textColor="@color/black" />
 
                     <EditText
                         android:id="@+id/etOrderReference"
@@ -290,6 +296,7 @@
                         android:layout_marginLeft="6dp"
                         android:layout_marginStart="6dp"
                         android:layout_weight="1"
+                        android:textColorHint="@color/black"
                         android:background="@color/greyBar"
                         android:hint="@string/enterOrderReference"
                         android:inputType="text|textNoSuggestions"
@@ -332,8 +339,9 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:maxLines="1"
+                        android:textColorHint="@color/black"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/textColorPrimary" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -537,7 +545,7 @@
                     android:layout_below="@+id/linearLayout6"
                     android:layout_gravity="center"
                     android:layout_margin="20dp"
-                    android:background="@drawable/button_blue"
+                    android:background="@color/alfaRed"
                     android:text="Trade"
                     android:textColor="@android:color/white" />
 
