@@ -42,6 +42,7 @@ import com.example.alfasdk.Fragments.ExchangeFragment;
 import com.example.alfasdk.Fragments.LinksFragment;
 import com.example.alfasdk.Fragments.MarginDetailFragment;
 import com.example.alfasdk.Fragments.MarketFragment;
+import com.example.alfasdk.Fragments.MenuFragment;
 import com.example.alfasdk.Fragments.NetShareDetailFragment;
 import com.example.alfasdk.Fragments.NetSharesFragment;
 import com.example.alfasdk.Fragments.OrderStatsFragment;
@@ -174,7 +175,7 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
 
         fragmentManager = getSupportFragmentManager();
 
-        replaceFragment(marketFragment, true, false);
+        addFragment(new MenuFragment(), true, false);
         getSymbolsFromServer();
         connectFeed();
     }
@@ -279,6 +280,8 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
         optionItems.clear();
 
         if (TrnCodes.length() > 0) {
+
+            navMenuList.add(new Menu("Home", R.drawable.ic_home, false));
 
             if (TrnCodes.contains("OM01")) {
                 navMenuList.add(new Menu("Market", R.drawable.iconmarket2x, false));
@@ -468,10 +471,16 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
     @Override
     public void onMenuInteraction(Menu item) {
 
+
         if (item.getIc_resource() == R.drawable.iconmarket2x) {
             replaceFragment(marketFragment, true, false);
-        } else if (item.getIc_resource() == R.drawable.orderstatus2x) {
+        }
+        else if (item.getIc_resource() == R.drawable.orderstatus2x) {
             replaceFragment(orderStatsFragment, true, false);
+        }
+
+        else if (item.getIc_resource() == R.drawable.ic_home) {
+            replaceFragment(new MenuFragment(), true, false);
         }
 //        else if (item.getIc_resource() == R.drawable.logout2x) {
 //            logoutAlert();
@@ -555,6 +564,25 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
         } else {
             fragmentManager.popBackStackImmediate();
             ft.replace(R.id.fragment_container, fragment, backStateName);
+        }
+
+
+        ft.addToBackStack(backStateName);
+        ft.commit();
+
+    }
+
+    public void addFragment(Fragment fragment, boolean popStack, boolean isChild) {
+
+        String backStateName = fragment.getClass().getName();
+
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        if (isChild) {
+            ft.add(R.id.fragment_container, fragment, backStateName);
+        } else {
+            fragmentManager.popBackStackImmediate();
+            ft.add(R.id.fragment_container, fragment, backStateName);
         }
 
 

@@ -436,7 +436,7 @@ public class MyLoginActivity extends BaseActivity implements SdkInterface {
 
 
 
-                                Intent intent = new Intent(context, MenuActivity.class);
+                                Intent intent = new Intent(context, MyMainActivity.class);
                                 intent.putExtra("marketResponse", Constants.MARKET_RESPONSE);
                                 intent.putExtra("symbolResult", Constants.SYMBOL_RESPONSE);
                                 intent.putExtra("loginResult", Constants.LOGIN_RESPONSE);

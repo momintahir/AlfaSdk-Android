@@ -19,8 +19,8 @@ public class MainActivityApp extends MyLoginActivity {
             @Override
             public void onClick(View v) {
                 SdkInterface sdkInterface=new MyLoginActivity();
-                sdkInterface.login(v,"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MjEwMTUyNTcyNTg3IiwiZXhwIjoxNjE1MjA2MTQ1LCJpYXQiOjE2MTUxODgxNDV9._oXSqsHmKJHoieyjxIg-uWieLIBAnem6aubUkkn8gixsq6RJ_6xbWX01X6k_oum4_i1VILA660SNRNlOZC_YTg",
-                        "4210152572587","PK54ALFH0005001004799205");
+                sdkInterface.login(v,"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MjEwMTUyNTcyNTg3IiwiZXhwIjoxNjE1ODI5MzAxLCJpYXQiOjE2MTU4MTEzMDF9.zY6ImVZwm8aVT0b8wwpCC_oinmFoB47A0iho5yZztPDhYIaKUimM4Ywf_InbrwMADYoXYUqURW5FqdXqOW7WRg",
+                        "PK54ALFH0005001004799205","4210152572587");
             }
         });
     }

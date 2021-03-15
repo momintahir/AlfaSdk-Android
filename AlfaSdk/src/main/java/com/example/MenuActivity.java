@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.alfasdk.Adapters.GridViewAdapter;
+import com.example.alfasdk.Adapters.NavAdapter;
 import com.example.alfasdk.Fragments.AccountFragment;
 import com.example.alfasdk.Fragments.CashBookFragment;
 import com.example.alfasdk.Fragments.EventsFragment;
@@ -34,7 +35,10 @@ import com.example.alfasdk.Fragments.TradeFragment;
 import com.example.alfasdk.Fragments.UserProfileFragment;
 import com.example.alfasdk.Models.LoginModel.LoginResponse;
 import com.example.alfasdk.Models.MarketModel.MarketResponse;
+import com.example.alfasdk.Models.MarketModel.MarketSymbol;
 import com.example.alfasdk.Models.Menu;
+import com.example.alfasdk.Models.OrderStatsModel.OrdersList;
+import com.example.alfasdk.Models.SymbolsModel.Symbol;
 import com.example.alfasdk.Models.SymbolsModel.SymbolsResponse;
 import com.example.alfasdk.R;
 import com.google.gson.Gson;
@@ -54,6 +58,7 @@ public class MenuActivity extends AppCompatActivity implements GridViewAdapter.I
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        fragmentManager = getSupportFragmentManager();
         initSessionData();
         setRecyclerView();
     }
@@ -234,4 +239,36 @@ public class MenuActivity extends AppCompatActivity implements GridViewAdapter.I
         ft.commit();
 
     }
+
+
+//
+//    @Override
+//    public void onMarketFragmentListener(int which, MarketSymbol sym) {
+//        switch (optionItems.get(which)) {
+//
+//            case "Summary": { //summary
+//                Log.d("Summary", new Gson().toJson(sym, MarketSymbol.class));
+//                QuotesFragment fragment = QuotesFragment.newInstance(new Gson().toJson(sym, MarketSymbol.class));
+//                replaceFragment(fragment, true, true);
+//            }
+//            break;
+//
+//            case "Trade": { //trade
+////                goToTrade(sym);
+//            }
+//            break;
+//
+//            case "Charts": { //charts
+////                goToCharts(sym);
+//
+//            }
+//            break;
+//            case "Research":
+//                ResearchPortalFragment fragment = ResearchPortalFragment.newInstance(sym.getSymbol());
+//                replaceFragment(fragment, true, true);
+//                // callingResearchPortalService(Constants.RESEARCH_PORTAL_URL);
+//                break;
+//        }
+//    }
+
 }
