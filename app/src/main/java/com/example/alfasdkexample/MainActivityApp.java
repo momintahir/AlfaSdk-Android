@@ -10,6 +10,8 @@ import com.example.alfasdk.SdkInterface;
 public class MainActivityApp extends MyLoginActivity {
 
     Button btnLogin;
+    private String token="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MjEwMTUyNTcyNTg3IiwiZXhwIjoxNjE5NzEwOTcwLCJpYXQiOjE2MTk2OTI5NzB9.g0onewB9upfyJI8SmqucvcElga4H_ZD_kNu0cDYVT95quZypBv6K26IWjevF0GwxEs_ROaS1dktu6TbmDjXY1A";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,8 +21,7 @@ public class MainActivityApp extends MyLoginActivity {
             @Override
             public void onClick(View v) {
                 SdkInterface sdkInterface=new MyLoginActivity();
-                sdkInterface.login(v,"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MjEwMTUyNTcyNTg3IiwiZXhwIjoxNjE1ODMxOTgzLCJpYXQiOjE2MTU4MTM5ODN9.18NyjgaY6292Je7x3hoDib6TqZpbNROf8WhgvB5aETPX0unQBy8Ed9ZUm3oiaPYAYpaLWvyyNQDJSrP8xndcOw",
-                        "PK54ALFH0005001004799205","4210152572587");
+                sdkInterface.login(v, token, "PK54ALFH0005001004799205","4210152572587");
             }
         });
     }

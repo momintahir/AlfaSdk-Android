@@ -245,8 +245,6 @@ public class MyLoginActivity extends BaseActivity implements SdkInterface {
 
     }
 
-
-
     private void connectWithMessageServer(final JsonObject login_obj) {
         Log.d(TAG, "connectWithMessageServer");
 
@@ -535,7 +533,6 @@ public class MyLoginActivity extends BaseActivity implements SdkInterface {
             }
         }
     }
-
 
     @Override
     public void login(View view,String token,String bankAcctNo,String cnic) {

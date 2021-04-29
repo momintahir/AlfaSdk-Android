@@ -34,15 +34,16 @@ public class MenuFragment extends Fragment implements GridViewAdapter.ItemClickL
     ArrayList<Menu> navMenuList=new ArrayList<>();
     FragmentManager fragmentManager;
     View view;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_menu, container, false);
         fragmentManager = getFragmentManager();
         setRecyclerView();
         return view;
     }
+
     @Override
     public void onResume() {
 
@@ -53,7 +54,6 @@ public class MenuFragment extends Fragment implements GridViewAdapter.ItemClickL
         }
         super.onResume();
     }
-
 
     private void setRecyclerView(){
 
@@ -72,11 +72,11 @@ public class MenuFragment extends Fragment implements GridViewAdapter.ItemClickL
                 navMenuList.add(new Menu("Index Watch", R.drawable.index_watch_red, false));
             }
             if (TrnCodes.contains("OM24")) {
-                navMenuList.add(new Menu("Research Portal", R.drawable.research_red, false));
+                navMenuList.add(new Menu("Explore Us", R.drawable.research_red, false));
             }
-            if (TrnCodes.contains("OM13")) {
-                navMenuList.add(new Menu("Message Board", R.drawable.message_board_red, false));
-            }
+            //            if (TrnCodes.contains("OM13")) {
+//                navMenuList.add(new Menu("Message Board", R.drawable.message_board_red, false));
+//            }
             if (TrnCodes.contains("OM03")) {
                 navMenuList.add(new Menu("Order Status", R.drawable.order_status, false));
             }
@@ -84,7 +84,7 @@ public class MenuFragment extends Fragment implements GridViewAdapter.ItemClickL
                 navMenuList.add(new Menu("Order", R.drawable.order_red, false));
             }
             if (TrnCodes.contains("OM07")) {
-                navMenuList.add(new Menu("Quotes", R.drawable.qoutes_red, false));
+                navMenuList.add(new Menu("Symbols Summary", R.drawable.qoutes_red, false));
             }
             if (TrnCodes.contains("OM15")) {
                 navMenuList.add(new Menu("Symbols", R.drawable.symbols_red, false));
@@ -93,28 +93,30 @@ public class MenuFragment extends Fragment implements GridViewAdapter.ItemClickL
                 navMenuList.add(new Menu("Top Symbols", R.drawable.top_symbols_red, false));
             }
             if (TrnCodes.contains("OM04")) {
-                navMenuList.add(new Menu("Portfolio Summary", R.drawable.potfolio_summary_red, false));
+                navMenuList.add(new Menu("My Portfolio", R.drawable.potfolio_summary_red, false));
             }
             if (TrnCodes.contains("OM21")) {
-                navMenuList.add(new Menu("Cash Book", R.drawable.cashbook_red, false));
+                navMenuList.add(new Menu("Transaction History", R.drawable.cashbook_red, false));
             }
             if (TrnCodes.contains("OM14")) {
-                navMenuList.add(new Menu("Payment Request", R.drawable.payment_request_red, false));
+                navMenuList.add(new Menu("Cash Withdrawal", R.drawable.payment_request_red, false));
             }
-            if (TrnCodes.contains("OM18")) {
-                navMenuList.add(new Menu("Profile", R.drawable.profile_red, false));
-            }
+
+            //            if (TrnCodes.contains("OM18")) {
+//                navMenuList.add(new Menu("Profile", R.drawable.profile_red, false));
+//            }
 
             if (TrnCodes.contains("OM02")) {
                 navMenuList.add(new Menu("Account Status", R.drawable.account_status_red, false));
             }
-            if (TrnCodes.contains("OM10")) {
-                navMenuList.add(new Menu("Settings", R.drawable.settings_red, false));
-            }
-            if (TrnCodes.contains("OM17")) {
-                navMenuList.add(new Menu("Links", R.drawable.links_red, false));
-            }
 
+            //            if (TrnCodes.contains("OM10")) {
+//                navMenuList.add(new Menu("Settings", R.drawable.settings_red, false));
+//            }
+
+//            if (TrnCodes.contains("OM17")) {
+//                navMenuList.add(new Menu("Links", R.drawable.links_red, false));
+//            }
 
             if (TrnCodes.contains("OM16")) {
                 navMenuList.add(new Menu("Margin Detail", R.drawable.account_status_red, false));
@@ -138,6 +140,7 @@ public class MenuFragment extends Fragment implements GridViewAdapter.ItemClickL
         gridViewAdapter.setClickListener(this);
         recyclerView.setAdapter(gridViewAdapter);
     }
+
     @Override
     public void onItemClick(View view, int position) {
 

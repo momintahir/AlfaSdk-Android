@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,8 +51,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.market_list_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.market_list_item, parent, false);
 
         return new ViewHolder(view, listener);
     }
@@ -66,11 +66,15 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
         holder.market.setText(holder.mItem.getMarket());
         holder.name.setText(holder.mItem.getName());
         holder.current.setText(holder.mItem.getCurrent());
-        holder.buy_price.setText(holder.mItem.getBuyPrice());
 
-        holder.buy_volume.setText(holder.mItem.getBuyVolume());
-        holder.sell_price.setText(holder.mItem.getSellPrice());
-        holder.sell_voulme.setText(holder.mItem.getSellVolume());
+        holder.tvBid.setText(""+holder.mItem.getBuyPrice()+" x "+holder.mItem.getBuyVolume());
+        holder.tvOffer.setText(""+holder.mItem.getSellPrice()+" x "+holder.mItem.getSellVolume());
+
+        //        holder.buy_price.setText(holder.mItem.getBuyPrice());
+//        holder.buy_volume.setText(holder.mItem.getBuyVolume());
+//        holder.sell_price.setText(holder.mItem.getSellPrice());
+//        holder.sell_voulme.setText(holder.mItem.getSellVolume());
+
         holder.low_price.setText(holder.mItem.getLowPrice());
         holder.high_price.setText(holder.mItem.getHighPrice());
 
@@ -92,10 +96,9 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
             percentage = change * 100 / open;
             Log.d("Perc " , String.valueOf(percentage));
             String perc= String.format("%.2f", percentage);
-            holder.change_per.setText(perc.concat("%"));
+            holder.change_per.setText("("+perc.concat("%")+")");
         }
-        else
-            {holder.change_per.setText(holder.mItem.getChangePer().concat("%"));
+        else {holder.change_per.setText(holder.mItem.getChangePer().concat("%"));
 
             }
 
@@ -402,16 +405,17 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
         public MarketSymbol mItem;
         int position;
         private TextView symbol, market, name, current, buy_price, sell_price, buy_volume, sell_voulme,low_price,high_price, change, change_per, turn_over;
         private LinearLayout linearLayout1, linearLayout2, linearLayout3;
+        private final ConstraintLayout front;
+        private final TextView tvBid, tvOffer;
 
         public ViewHolder(View view, final OnMarketItemClickListener listener) {
             super(view);
 
-            mView = view.findViewById(R.id.front);
+            front = view.findViewById(R.id.front);
             symbol = (TextView) view.findViewById(R.id.symbol);
             market = (TextView) view.findViewById(R.id.market);
             name = (TextView) view.findViewById(R.id.name);
@@ -425,34 +429,30 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
             change = (TextView) view.findViewById(R.id.change);
             change_per = (TextView) view.findViewById(R.id.change_per);
             turn_over = (TextView) view.findViewById(R.id.turn_over);
-            linearLayout1 = (LinearLayout) view.findViewById(R.id.linearLayout1);
-            linearLayout2 = (LinearLayout) view.findViewById(R.id.linearLayout2);
-            linearLayout3 = (LinearLayout) view.findViewById(R.id.linearLayout3);
+            tvBid = (TextView) view.findViewById(R.id.tvBid);
+            tvOffer = (TextView) view.findViewById(R.id.tvOffer);
 
-            linearLayout1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
+            //            linearLayout1 = (LinearLayout) view.findViewById(R.id.linearLayout1);
+//            linearLayout2 = (LinearLayout) view.findViewById(R.id.linearLayout2);
+//            linearLayout3 = (LinearLayout) view.findViewById(R.id.linearLayout3);
+//            linearLayout1.setOnClickListener(v -> {
+//                Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
+//                listener.onMarketItemClick(v, mItem, position, false);
+//            });
+//            linearLayout3.setOnClickListener(v -> {
+//                Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
+//                listener.onMarketItemClick(v, mItem, position, false);
+//            });
+//            linearLayout2.setOnClickListener(v -> {
+//                Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
+//                listener.onMarketItemClick(v, mItem, position, true);
+//            });
 
-                    listener.onMarketItemClick(v, mItem, position, false);
-                }
+            front.setOnClickListener(v -> {
+                Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
+                listener.onMarketItemClick(v, mItem, position, false);
             });
 
-            linearLayout3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
-                    listener.onMarketItemClick(v, mItem, position, false);
-                }
-            });
-
-            linearLayout2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
-                    listener.onMarketItemClick(v, mItem, position, true);
-                }
-            });
         }
     }
 }

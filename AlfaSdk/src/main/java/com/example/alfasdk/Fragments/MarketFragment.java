@@ -98,8 +98,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_market, container, false);
 //        ButterKnife.bind(this, view);
         mPager=view.findViewById(R.id.pager);
@@ -153,7 +152,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         return view;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -264,8 +262,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
 //        Log.d("MarketFragment", "onResume");
     }
-
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -428,7 +424,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         mAddSymbol = null;
     }
 
-
 //    @OnClick({R.id.left_arrow, R.id.right_arrow})
 //    public void pagerChange(View v) {
 //
@@ -451,7 +446,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 //        }
 ////        onPageFinished(mPager.getCurrentItem());
 //    }
-
 
     private boolean symbolAlreadyAdded(Symbol symToCompare) {
 

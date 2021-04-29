@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -169,7 +170,9 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
 // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.alfaRed));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(ContextCompat.getColor(this,R.color.alfaRed));
+        }
 
         getSupportFragmentManager().addOnBackStackChangedListener(getListener());
 
@@ -269,7 +272,6 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
         super.onDestroy();
     }
 
-
     private void initNavMenu() {
 
         RecyclerView navigationView = (RecyclerView) findViewById(R.id.menu_list);
@@ -291,7 +293,7 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
                 navMenuList.add(new Menu("Index Watch", R.drawable.marketicon2x, false));
             }
             if (TrnCodes.contains("OM24")) {
-                navMenuList.add(new Menu("Research Portal", R.drawable.research2x, false));
+                navMenuList.add(new Menu("Explore Us", R.drawable.research2x, false));
             }
             if (TrnCodes.contains("OM13")) {
                 navMenuList.add(new Menu("Message Board", R.drawable.events2x, false));
@@ -303,7 +305,7 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
                 navMenuList.add(new Menu("Order", R.drawable.trade2x, false));
             }
             if (TrnCodes.contains("OM07")) {
-                navMenuList.add(new Menu("Quotes", R.drawable.quotes2x, false));
+                navMenuList.add(new Menu("Symbol Summary", R.drawable.quotes2x, false));
             }
             if (TrnCodes.contains("OM15")) {
                 navMenuList.add(new Menu("Symbols", R.drawable.symbols2x, false));
@@ -312,13 +314,13 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
                 navMenuList.add(new Menu("Top Symbols", R.drawable.topsymbols2x, false));
             }
             if (TrnCodes.contains("OM04")) {
-                navMenuList.add(new Menu("Portfolio Summary", R.drawable.portfoliosummary2x, false));
+                navMenuList.add(new Menu("My Portfolio", R.drawable.portfoliosummary2x, false));
             }
             if (TrnCodes.contains("OM21")) {
-                navMenuList.add(new Menu("Cash Book", R.drawable.cashbook2x, false));
+                navMenuList.add(new Menu("Transaction History", R.drawable.cashbook2x, false));
             }
             if (TrnCodes.contains("OM14")) {
-                navMenuList.add(new Menu("Payment Request", R.drawable.paymentrequest2x, false));
+                navMenuList.add(new Menu("Cash Withdrawal", R.drawable.paymentrequest2x, false));
             }
             if (TrnCodes.contains("OM18")) {
                 navMenuList.add(new Menu("Profile", R.drawable.profileicon2x, false));
@@ -427,7 +429,6 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
         }
     }
 
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -467,10 +468,8 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onMenuInteraction(Menu item) {
-
 
         if (item.getIc_resource() == R.drawable.iconmarket2x) {
             replaceFragment(marketFragment, true, false);
@@ -551,7 +550,6 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
 
         alert.show();
     }
-
 
     public void replaceFragment(Fragment fragment, boolean popStack, boolean isChild) {
 
@@ -682,7 +680,6 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
             }
         };
     }
-
 
     public void orderStatusRequest() {
 
