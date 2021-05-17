@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
@@ -13,7 +14,6 @@
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_centerHorizontal="true"
         android:background="@color/greyBar"
         android:drawableEnd="@drawable/iconsearch"
@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/trade_btn"
-        android:layout_alignRight="@+id/search"
+        android:layout_alignEnd="@+id/search"
         android:layout_below="@+id/name"
         android:layout_marginTop="5dp">
 
@@ -58,8 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -71,9 +69,10 @@
                     android:gravity="center_vertical"
                     android:padding="5dp">
 
-
                     <TextView
                         android:id="@+id/textView15"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -82,12 +81,15 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:id="@+id/textView16"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="17"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="@android:color/black" />
                 </TableRow>
 
@@ -100,6 +102,8 @@
 
                     <TextView
                         android:id="@+id/bid"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -108,13 +112,15 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:id="@+id/bidtext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
                         android:layout_column="17"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="#6387f1" />
 
                 </TableRow>
@@ -128,6 +134,8 @@
 
                     <TextView
                         android:id="@+id/offer"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -136,12 +144,15 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:id="@+id/offertext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="17"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="#eaea0f0f" />
 
                 </TableRow>
@@ -157,6 +168,8 @@
 
                     <TextView
                         android:id="@+id/Change"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -165,12 +178,15 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:id="@+id/changetext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="17"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="@android:color/black" />
 
                 </TableRow>
@@ -184,6 +200,8 @@
 
                     <TextView
                         android:id="@+id/low"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -192,12 +210,15 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:id="@+id/lowtext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="17"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="@android:color/black" />
                 </TableRow>
 
@@ -212,6 +233,8 @@
 
                     <TextView
                         android:id="@+id/limit"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -220,12 +243,15 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:id="@+id/limittext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="17"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="@android:color/black" />
 
                 </TableRow>
@@ -240,6 +266,8 @@
 
                     <TextView
                         android:id="@+id/turnover"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -248,12 +276,15 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:id="@+id/turnovertext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="17"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="@android:color/black" />
 
                 </TableRow>
@@ -267,6 +298,8 @@
 
                     <TextView
                         android:id="@+id/exchange"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -275,12 +308,15 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:id="@+id/exchangetext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="17"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="@android:color/black" />
                 </TableRow>
 
@@ -293,6 +329,8 @@
 
                     <TextView
                         android:id="@+id/market"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -301,12 +339,15 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:id="@+id/markettext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="17"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="@android:color/black" />
 
                 </TableRow>
@@ -320,6 +361,8 @@
 
                     <TextView
                         android:id="@+id/lot"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -328,12 +371,15 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:id="@+id/lottext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_column="17"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="@android:color/black" />
 
 
@@ -398,9 +444,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:gravity="left"
                         android:text="30 Days"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"/>
 
                 </TableRow>
 
@@ -413,28 +461,34 @@
 
                     <TextView
                         android:id="@+id/lowhighPrice30"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0.0 - 0.0"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"/>
 
                     <TextView
                         android:id="@+id/avgPrice30"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0.0"
                         android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/AvgVolume30"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0"
                         android:textColor="@android:color/black" />
                 </TableRow>
@@ -448,6 +502,8 @@
                     android:weightSum="4">
 
                     <TextView
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -466,28 +522,34 @@
 
                     <TextView
                         android:id="@+id/lowhighPrice90"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0.0 - 0.0"
                         android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/avgPrice90"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0.0"
                         android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/AvgVolume90"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0"
                         android:textColor="@android:color/black" />
                 </TableRow>
@@ -501,6 +563,8 @@
                     android:weightSum="4">
 
                     <TextView
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -519,28 +583,34 @@
 
                     <TextView
                         android:id="@+id/lowhighPrice180"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0.0 - 0.0"
                         android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/avgPrice180"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0.0"
                         android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/AvgVolume180"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0"
                         android:textColor="@android:color/black" />
                 </TableRow>
@@ -554,6 +624,8 @@
                     android:weightSum="4">
 
                     <TextView
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -572,28 +644,34 @@
 
                     <TextView
                         android:id="@+id/lowhighPrice52"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0.0 - 0.0"
                         android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/avgPrice52"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0.0"
                         android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/AvgVolume52"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="0"
                         android:textColor="@android:color/black" />
                 </TableRow>
@@ -605,13 +683,13 @@
 
     <Button
         android:id="@+id/trade_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:backgroundTint="@color/redDark"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/button_blue"
         android:text="Trade"
         android:textColor="@android:color/white" />
 

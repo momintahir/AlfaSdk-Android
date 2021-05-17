@@ -78,7 +78,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
     ImageView cancel_search,left_arrow,right_arrow;
     List<Symbol> searchKeywordsList = new ArrayList<>();
-    //    List<MarketSymbol> marketSymbolList;
     private OnMarketFragmentListener mListener;
     private OnSymbolRequest mAddSymbol;
     private SearchListAdapter searchAdapter;
@@ -209,7 +208,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_feed_status) {
-//            Log.d("MarketFragment", "status clicked");
             if (!isConnected) {
                 ((MyMainActivity) getActivity()).connectFeed();
             }
@@ -571,7 +569,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         listSearch_view.setVisibility(View.GONE);
     }
 
-
     public void onFeedReceived(String resp) {
 
         try {
@@ -629,7 +626,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         }
     }
 
-
     private void showOptionsMenu(final MarketSymbol sym, final int position) {
 
         final String[] stringArray = MyMainActivity.optionItems.toArray(new String[0]);
@@ -638,50 +634,45 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
         alert.setTitle("Actions for " + sym.getSymbol());
-        alert.setItems(stringArray, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        alert.setItems(stringArray, (dialog, which) -> {
 
 
-                if (stringArray[which].equals("Delete")) {
+            if (stringArray[which].equals("Delete")) {
 
-                    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                    alert.setTitle("Delete");
-                    alert.setMessage("Do you want to delete " + sym.getName() + "?");
-                    alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
+                AlertDialog.Builder alert1 = new AlertDialog.Builder(getActivity());
+                alert1.setTitle("Delete");
+                alert1.setMessage("Do you want to delete " + sym.getName() + "?");
+                alert1.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert1.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
 
-                            if (mAddSymbol != null) {
-                                mAddSymbol.onSymbolDeleteRequest(sym);
+                        if (mAddSymbol != null) {
+                            mAddSymbol.onSymbolDeleteRequest(sym);
 
-                                MarketFragment.postionToRemove = position;
+                            MarketFragment.postionToRemove = position;
 
 //                                Log.d("onSymbolDeleteRequest", "position: " + position);
 
-                            }
                         }
-                    });
-
-                    alert.show();
-                } else {
-                    if (mListener != null) {
-
-                        mListener.onMarketFragmentListener(which, sym);
-
                     }
+                });
+
+                alert1.show();
+            } else {
+                if (mListener != null) {
+                    mListener.onMarketFragmentListener(which, sym);
                 }
-
-
             }
-        });
+
+
+        } );
 
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override

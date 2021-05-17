@@ -53,7 +53,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.market_list_item, parent, false);
 
-        return new ViewHolder(view, listener);
+        return new ViewHolder ( view, listener );
     }
 
     @Override
@@ -98,9 +98,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
             String perc= String.format("%.2f", percentage);
             holder.change_per.setText("("+perc.concat("%")+")");
         }
-        else {holder.change_per.setText(holder.mItem.getChangePer().concat("%"));
-
-            }
+        else {holder.change_per.setText("("+holder.mItem.getChangePer().concat("%")+")"); }
 
 
         holder.turn_over.setText(holder.mItem.getTurnOver());
@@ -404,7 +402,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
         void onMarketItemClick(View caller, MarketSymbol mItem, int position, boolean openTrade);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public MarketSymbol mItem;
         int position;
         private TextView symbol, market, name, current, buy_price, sell_price, buy_volume, sell_voulme,low_price,high_price, change, change_per, turn_over;
