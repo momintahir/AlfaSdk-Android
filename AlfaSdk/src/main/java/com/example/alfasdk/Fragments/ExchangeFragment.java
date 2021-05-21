@@ -72,9 +72,7 @@ public class ExchangeFragment extends Fragment {
         }
 
         exchangesAdapter = new ExchangeAdapter(getActivity(), exchangeList, linearLayoutManager, this);
-
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-
         recyclerView.setAdapter(exchangesAdapter);
 
 

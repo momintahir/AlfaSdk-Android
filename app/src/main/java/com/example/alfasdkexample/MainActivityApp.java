@@ -10,7 +10,7 @@ import com.example.alfasdk.SdkInterface;
 public class MainActivityApp extends MyLoginActivity {
 
     Button btnLogin;
-    private String token="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MjEwMTUyNTcyNTg3IiwiZXhwIjoxNjIwMDQwMjI4LCJpYXQiOjE2MjAwMjIyMjh9.8HETM22wMA-g0xwLdqz0s66volbdyHqwDsd1EfFPqmoIVvCrY3vWohmu_nlQ8aiIicKt0YCjJIPNgIBaxI8i7Q";
+    private String token="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MjEwMTUyNTcyNTg3IiwiZXhwIjoxNjIxNTIxNDI1LCJpYXQiOjE2MjE1MDM0MjV9.1dP6rp8zSrApl6ZeJSmQ8cFe91RkfIsnkrqZCTnp1QpfwWE6A8ld0rcnxJRKlHWgjj2MqZ4ErclXk8NQsVGL6w";
 
 
     @Override

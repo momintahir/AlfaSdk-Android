@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -29,7 +30,7 @@ import java.util.List;
 /**
  * Developed by Hasham.Tahir on 7/19/2016.
  */
-public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHolder> {
+public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ExchangeViewHolder> {
 
     private final List<Exchange> mValues;
     private final int colorRed, colorGreen;
@@ -46,64 +47,61 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list_exchanges, parent, false);
-
-        return new ViewHolder(view);
+    public ExchangeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.exchanges_list_item_row, parent, false);
+        return new ExchangeViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ExchangeViewHolder holder, int position) {
 
         holder.position = position;
         holder.mItem = mValues.get(position);
 
-        holder.exchangeName.setText(holder.mItem.getSymbol());
 
-        final SpannableStringBuilder sbLast = new SpannableStringBuilder("Last: " + holder.mItem.getLastIndex());
-        final SpannableStringBuilder sbVol = new SpannableStringBuilder("Val: " + holder.mItem.getMonitoryVolume());
-        final SpannableStringBuilder sbLow = new SpannableStringBuilder("Low: " + holder.mItem.getLowIndex());
-        final SpannableStringBuilder sbHigh = new SpannableStringBuilder("High: " + holder.mItem.getHighIndex());
+        //        final SpannableStringBuilder sbLast = new SpannableStringBuilder("Last: " + holder.mItem.getLastIndex());
+//        final SpannableStringBuilder sbVol = new SpannableStringBuilder("Val: " + holder.mItem.getMonitoryVolume());
+//        final SpannableStringBuilder sbLow = new SpannableStringBuilder("Low: " + holder.mItem.getLowIndex());
+//        final SpannableStringBuilder sbHigh = new SpannableStringBuilder("High: " + holder.mItem.getHighIndex());
+        //final ForegroundColorSpan fcs = new ForegroundColorSpan(Color.parseColor("#555555"));
+//        sbLast.setSpan(fcs, 0, 4, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//        sbVol.setSpan(fcs, 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//        sbLow.setSpan(fcs, 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//        sbHigh.setSpan(fcs, 0, 4, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 
-        final ForegroundColorSpan fcs = new ForegroundColorSpan(Color.parseColor("#555555"));
+        holder.tvSymbolTitle.setText(holder.mItem.getSymbol()+"");
+        holder.tvCurrent.setText(holder.mItem.getCurrent()+"");
+        holder.tvVolume.setText(holder.mItem.getTurnOver()+"");
+        holder.tvHigh.setText(holder.mItem.getHighIndex()+"");
+        holder.tvLow.setText(holder.mItem.getLowIndex()+"");
+        holder.tvValue.setText(holder.mItem.getMonitoryVolume()+"");
+        holder.tvLast.setText(holder.mItem.getLastIndex()+"");
 
-        sbLast.setSpan(fcs, 0, 4, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        sbVol.setSpan(fcs, 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        sbLow.setSpan(fcs, 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        sbHigh.setSpan(fcs, 0, 4, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-
-        holder.last.setText(sbLast);
-        holder.volume.setText(sbVol);
-        holder.current.setText(holder.mItem.getCurrent());
-        holder.low.setText(sbLow);
-        holder.high.setText(sbHigh);
-        holder.change.setText(holder.mItem.getChange());
         double percentage=0;
         String changeStr  = holder.mItem.getChange().replace(",", "");
         String lastStr   = holder.mItem.getCurrent().replace(",", "");
         Double chnge = Double.parseDouble(changeStr);
         double lst = Double.parseDouble(lastStr);
         double open = lst - chnge;
-        //if (last > 0 && open > 0) {
         percentage = chnge * 100 / open;
         Log.d("Perc " , String.valueOf(percentage));
         String perc= String.format("%.2f", percentage);
-        holder.changePer.setText(perc.concat("%"));
-        holder.turnOver.setText(holder.mItem.getTurnOver());
+        holder.tvChange.setText(holder.mItem.getChange()+" ("+perc.concat("%")+")");
 
         try {
             float change = Float.parseFloat(holder.mItem.getChange().replace(",", ""));
 
             if (change < 0) {
-                holder.change.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
-                holder.changePer.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
+                holder.tvChange.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
+                holder.ivArrowDown2.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_down_arrow));
+                holder.ivArrowDown2.setVisibility(View.VISIBLE);
             } else if (change > 0) {
-                holder.change.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
-                holder.changePer.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                holder.tvChange.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                holder.ivArrowDown2.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_up_arrow));
+                holder.ivArrowDown2.setVisibility(View.VISIBLE);
             } else {
-                holder.change.setTextColor(Color.BLACK);
-                holder.changePer.setTextColor(Color.BLACK);
+                holder.ivArrowDown2.setVisibility(View.GONE);
+                holder.tvChange.setTextColor(Color.BLACK);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,19 +110,16 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
         try {
             float current = Float.parseFloat(holder.mItem.getCurrent().replace(",", ""));
             float last = Float.parseFloat(holder.mItem.getLastIndex().replace(",", ""));
-
-
             if (current > last) {
                 Log.d("ExchangeCheck", "current: " + current + " > last:" + last);
-                holder.current.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                holder.tvCurrent.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
             } else if (current < last) {
                 Log.d("ExchangeCheck", "current: " + current + " < last:" + last);
-                holder.current.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
+                holder.tvCurrent.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
             } else if (current == last) {
                 Log.d("ExchangeCheck", "current: " + current + " == last:" + last);
-                holder.current.setTextColor(Color.BLACK);
+                holder.tvCurrent.setTextColor(Color.BLACK);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -291,42 +286,61 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
         animatorSet.start();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ExchangeViewHolder extends RecyclerView.ViewHolder {
 
-        public final View mView;
+        //public final View mView;
         public Exchange mItem;
         int position;
-        private TextView exchangeName;
-        private TextView last;
-        private TextView volume;
-        private TextView current;
-        private TextView low;
-        private TextView high;
-        private TextView change;
-        private TextView changePer;
-        private TextView turnOver;
 
-        public ViewHolder(View view) {
+        //        private TextView exchangeName;
+//        private TextView last;
+//        private TextView volume;
+//        private TextView current;
+//        private TextView low;
+//        private TextView high;
+//        private TextView change;
+//        private TextView changePer;
+//        private TextView turnOver;
+        TextView tvSymbolTitle, tvCurrent, tvVolume, tvHigh, tvLow;
+        ImageView ivArrowDown2;
+        TextView tvChange, tvValue, tvLast, tvDown;
+
+        public ExchangeViewHolder(View view) {
             super(view);
 
+            //mView = view.findViewById(R.id.front);
+            tvSymbolTitle = view.findViewById(R.id.tvSymbolTitle);
+            tvCurrent = view.findViewById(R.id.tvCurrent);
+            tvVolume = view.findViewById(R.id.tvVolume);
+            tvHigh = view.findViewById(R.id.tvHigh);
+            tvLow = view.findViewById(R.id.tvLow);
 
-            mView = view.findViewById(R.id.front);
-            exchangeName = (TextView) view.findViewById(R.id.exchangeName);
-            last = (TextView) view.findViewById(R.id.last);
-            volume = (TextView) view.findViewById(R.id.volume);
-            current = (TextView) view.findViewById(R.id.current);
-            low = (TextView) view.findViewById(R.id.low);
-            high = (TextView) view.findViewById(R.id.high);
-            change = (TextView) view.findViewById(R.id.change);
-            changePer = (TextView) view.findViewById(R.id.change_per);
-            turnOver = (TextView) view.findViewById(R.id.turn_over);
+            ivArrowDown2 = view.findViewById(R.id.ivArrowDown2);
 
-//            mView.setOnClickListener(new View.OnClickListener() {
+            tvChange = view.findViewById(R.id.tvChange);
+            tvValue = view.findViewById(R.id.tvValue);
+            tvLast = view.findViewById(R.id.tvLast);
+            tvDown = view.findViewById(R.id.tvDown);
+
+
+            //            exchangeName = (TextView) view.findViewById(R.id.exchangeName);
+//            last = (TextView) view.findViewById(R.id.last);
+//            volume = (TextView) view.findViewById(R.id.volume);
+//            current = (TextView) view.findViewById(R.id.current);
+//            low = (TextView) view.findViewById(R.id.low);
+//            high = (TextView) view.findViewById(R.id.high);
+//            change = (TextView) view.findViewById(R.id.change);
+//            changePer = (TextView) view.findViewById(R.id.change_per);
+//            turnOver = (TextView) view.findViewById(R.id.turn_over);
+
+            //            mView.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
 //                    listener.onMarketItemClick(v, mItem, position);
 //                }
 //            });
+
+
         }
     }
 }
