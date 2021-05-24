@@ -59,32 +59,16 @@ public class TradeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     public boolean sendMessage = true;
 
-//    @BindView(R.id.etclientcode)
     EditText clientcode;
-//    @BindView(R.id.etSymbol)
     EditText symbol;
-//    @BindView(R.id.etVolume)
     EditText volume;
-//    @BindView(R.id.etPrice)
     EditText price;
-//    @BindView(R.id.tvlimit)
     TextView limit_tv;
-//    @BindView(R.id.tvbuyvol)
     TextView buyvol;
-//    @BindView(R.id.tvsellvol)
     TextView sellvol;
-    //    @BindView({R.id.buybutton, R.id.sellbutton, R.id.shortbutton})
-//    List<Button> tab1Views;
-//    @BindView({R.id.limitbutton, R.id.marketbutton})
-//    List<Button> tab2Views;
-//    @BindView(R.id.search_list)
     ListView listSearch;
-//    @BindView(R.id.search_list1)
     ListView listSearch1;
-
-//    @BindView(R.id.search_list_view)
     LinearLayout listSearch_view;
-//    @BindView(R.id.search_list_view1)
     LinearLayout listSearch_view1;
     List<Symbol> searchKeywordsList;
     MarketSymbol marketSymbol = null;
@@ -92,26 +76,18 @@ public class TradeFragment extends Fragment {
     int tab1Selected = 1;
     String orderSide = "B";
     String orderType = "4";
-//    @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
-//    @BindView(R.id.radioButtonBuy)
     RadioButton radiobuy;
-//    @BindView(R.id.radioButtonSell)
     RadioButton radiosell;
-//    @BindView(R.id.textViewOrderType)
     TextView textViewOrderType;
-//    @BindView(R.id.textViewOrderProp)
     TextView textViewOrderProp;
-//    @BindView(R.id.textViewOrderValue)
     TextView textViewOrderValue;
-//    @BindView(R.id.etTriggerPrice)
     EditText etTriggerPrice;
-//    @BindView(R.id.etDiscVolume)
     EditText etDiscVolume;
-//    @BindView(R.id.etOrderReference)
     EditText etOrderReference;
     Button tradebutton;
     ImageView cancel_search,cancel_search1;
+
     private SearchListAdapter searchAdapter;
     private SearchClientListAdapter searchClientListAdapter;
     private MarketSymbol values;
@@ -883,7 +859,7 @@ public class TradeFragment extends Fragment {
 
     }
 
-    private boolean checkOrderTypeLogicAndShit() {
+    private void checkOrderTypeLogicAndShit() {
 
         if (marketSymbol.getMarket().equals("FUT") && tab1Selected == 1 && textViewOrderType.getText().equals("SHORT SELL")) {
 
@@ -900,7 +876,7 @@ public class TradeFragment extends Fragment {
             etTriggerPrice.setText("");
             etTriggerPrice.setEnabled(false);
 
-            return false;
+            return;
         }
 
         if (textViewOrderType.getText().equals("LIMIT")) {
@@ -918,7 +894,7 @@ public class TradeFragment extends Fragment {
                 price.setText(marketSymbol.getBuyPrice());
             }
 
-            return false;
+            return;
         }
 
         if (textViewOrderType.getText().equals("STOP LOSS") || textViewOrderType.getText().equals("MIT")) {
@@ -936,7 +912,7 @@ public class TradeFragment extends Fragment {
                 }
             }
 
-            return false;
+            return;
         }
         if (textViewOrderType.getText().equals("LS") && tab1Selected == 1) {
             Alert.show(getActivity(), getString(R.string.app_name), getString(R.string.LSnotAllowedForBuy));
@@ -951,7 +927,7 @@ public class TradeFragment extends Fragment {
             etTriggerPrice.setText("");
             etTriggerPrice.setEnabled(false);
 
-            return false;
+            return;
 
         }
         if (textViewOrderType.getText().equals("MFB") && tab1Selected == 2) {
@@ -968,7 +944,7 @@ public class TradeFragment extends Fragment {
             etTriggerPrice.setText("");
             etTriggerPrice.setEnabled(false);
 
-            return false;
+            return;
 
         }
         if (textViewOrderType.getText().equals("LB") && tab1Selected == 2) {
@@ -985,7 +961,7 @@ public class TradeFragment extends Fragment {
             etTriggerPrice.setText("");
             etTriggerPrice.setEnabled(false);
 
-            return false;
+            return;
 
         }
         if (textViewOrderType.getText().equals("MARKET")) {
@@ -995,7 +971,7 @@ public class TradeFragment extends Fragment {
             price.setText("");
             price.setEnabled(false);
 
-            return false;
+            return;
         }
 
         if (textViewOrderType.getText().equals("SHORT SELL")) {
@@ -1075,7 +1051,7 @@ public class TradeFragment extends Fragment {
                 }
 //            }
 
-            return false;
+            return;
         }
 
         if (textViewOrderType.getText().equals("LB")) {
@@ -1119,13 +1095,11 @@ public class TradeFragment extends Fragment {
                 orderType = (String) textViewOrderType.getTag();
             }
 
-            return false;
         }
 
-        return true;
     }
 
-    private boolean checkOrderPropLogicAndShit() {
+    private void checkOrderPropLogicAndShit() {
 
         if (textViewOrderType.getText().equals("LEVERAGE BUY") && textViewOrderProp.getText().equals("AON")) {
 
@@ -1135,7 +1109,6 @@ public class TradeFragment extends Fragment {
             textViewOrderProp.setTag(ordProps.get(0).getCode());
 
         }
-        return true;
     }
 
     private boolean checkTradeLogic() {
@@ -1475,7 +1448,7 @@ public class TradeFragment extends Fragment {
 
     }
 
-    private boolean proceedToTrade() {
+    private void proceedToTrade() {
 
         String enteredDisclosedVolume = etDiscVolume.getText().toString();
         String enteredOrderReference = etOrderReference.getText().toString();
@@ -1572,7 +1545,6 @@ public class TradeFragment extends Fragment {
         ((MyMainActivity) getActivity()).tradeOrderRequest(request_obj);
         Util.hideKeyboard(getActivity());
 
-        return true;
     }
 
     private class OrdTypeAdapter<T> extends ArrayAdapter<T> {

@@ -389,6 +389,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
                 android:text="History"
@@ -689,9 +692,9 @@
 
     <Button
         android:id="@+id/trade_btn"
-        android:backgroundTint="@color/alfaRed"
+        android:background="@color/alfaRed"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"

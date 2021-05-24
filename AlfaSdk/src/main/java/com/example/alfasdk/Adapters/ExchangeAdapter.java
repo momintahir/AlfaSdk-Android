@@ -74,8 +74,8 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.Exchan
         holder.tvVolume.setText(holder.mItem.getTurnOver()+"");
         holder.tvHigh.setText(holder.mItem.getHighIndex()+"");
         holder.tvLow.setText(holder.mItem.getLowIndex()+"");
-        holder.tvValue.setText(holder.mItem.getMonitoryVolume()+"");
-        holder.tvLast.setText(holder.mItem.getLastIndex()+"");
+        holder.tvValue.setText("Val: "+holder.mItem.getMonitoryVolume()+"");
+        holder.tvLast.setText("Last: "+holder.mItem.getLastIndex()+"");
 
         double percentage=0;
         String changeStr  = holder.mItem.getChange().replace(",", "");

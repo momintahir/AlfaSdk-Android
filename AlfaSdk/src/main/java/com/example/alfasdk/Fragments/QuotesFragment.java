@@ -151,8 +151,7 @@ QuotesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quotes, container, false);
 //        ButterKnife.bind(this, view);
         search=view.findViewById(R.id.search);
@@ -204,7 +203,6 @@ QuotesFragment extends Fragment {
         return view;
     }
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -235,17 +233,12 @@ QuotesFragment extends Fragment {
 
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onViewCreated(View view, Bundle savedInstanceState) { super.onViewCreated(view, savedInstanceState);
 
         listSearch.setAdapter(searchAdapter);
-//        Util.hideKeyboard(getActivity());
-
         if (marketSymbol != null) {
             setValues(marketSymbol);
         }
-
-
         listSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -264,7 +257,6 @@ QuotesFragment extends Fragment {
 
             }
         });
-
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -298,7 +290,6 @@ QuotesFragment extends Fragment {
 //        listSearch_view.setVisibility(View.GONE);
 //    }
 
-//    @OnClick(R.id.trade_btn)
     public void tradeButton() {
 
         String TrnCodes = MyMainActivity.loginResponse.getResponse().getTrnCodes();

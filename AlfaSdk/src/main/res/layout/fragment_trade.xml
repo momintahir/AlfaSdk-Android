@@ -19,18 +19,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-
             android:gravity="center_horizontal"
             android:orientation="horizontal"
-            android:padding="8dp"
             android:weightSum="2">
-
             <RadioButton
                 android:id="@+id/radioButtonBuy"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
@@ -40,12 +35,12 @@
                 android:text="@string/buy"
                 android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@drawable/selector_radio_button_text" />
+                android:textColor="@color/white" />
 
             <RadioButton
                 android:id="@+id/radioButtonSell"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
@@ -54,7 +49,7 @@
                 android:text="@string/sell"
                 android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@drawable/selector_radio_button_text" />
+                android:textColor="@color/white" />
 
         </RadioGroup>
         <LinearLayout
@@ -64,7 +59,7 @@
             android:layout_below="@+id/radioGroup"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="18dp"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -207,8 +202,9 @@
                     android:id="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/linearLayout2"
                     android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/greyBar"
                     android:padding="5dp"
                     android:text="@string/moreOptions"
@@ -311,8 +307,9 @@
                     android:id="@+id/linearLayout5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/linearLayout4"
                     android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/greyBar"
                     android:orientation="horizontal"
                     android:padding="5dp"
@@ -445,8 +442,9 @@
                     android:id="@+id/linearLayout6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/linearLayout5"
                     android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/greyBar"
                     android:orientation="horizontal"
                     android:padding="10dp"
@@ -542,7 +540,6 @@
                     android:id="@+id/tradebutton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/linearLayout6"
                     android:layout_gravity="center"
                     android:layout_margin="20dp"
                     android:background="@color/alfaRed"

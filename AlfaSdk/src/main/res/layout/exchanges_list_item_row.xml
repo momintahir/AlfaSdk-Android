@@ -3,10 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/front"
     android:background="@color/white"
-    android:paddingStart="@dimen/_3sdp"
-    android:paddingEnd="@dimen/_3sdp"
     android:paddingTop="@dimen/_5sdp"
-    android:paddingBottom="@dimen/_5sdp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,10 +11,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintHorizontal_weight="2.5"
+        android:layout_marginBottom="@dimen/_5sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/layout2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/divider">
         <TextView
             android:id="@+id/tvSymbolTitle"
             android:text="KSE100"
@@ -79,12 +77,13 @@
         android:id="@+id/layout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_7sdp"
-        app:layout_constraintHorizontal_weight="3"
+        android:layout_marginStart="@dimen/_5sdp"
+        app:layout_constraintHorizontal_weight="2.5"
+        android:layout_marginBottom="@dimen/_5sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/layout1"
         app:layout_constraintEnd_toStartOf="@+id/layout3"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/divider">
         <TextView
             android:id="@+id/tvCurrent"
             android:text="000,000.000"
@@ -142,52 +141,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/layout3"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintHorizontal_weight="0.5"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/layout2"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/layout4"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent">-->
-<!--        <ImageView-->
-<!--            android:id="@+id/ivArrowDown2"-->
-<!--            android:src="@drawable/ic_down_arrow"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="16dp"-->
-<!--            android:layout_marginTop="@dimen/_4sdp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"/>-->
-<!--        <ImageView-->
-<!--            android:id="@+id/ivArrowUp"-->
-<!--            android:src="@drawable/ic_up_arrow"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="16dp"-->
-<!--            android:layout_marginBottom="@dimen/_5sdp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/ivArrowDown"/>-->
-<!--        <ImageView-->
-<!--            android:id="@+id/ivArrowDown"-->
-<!--            android:src="@drawable/ic_down_arrow"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="16dp"-->
-<!--            android:layout_marginBottom="@dimen/_2sdp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHorizontal_weight="4.5"
+        app:layout_constraintHorizontal_weight="5"
+        android:layout_marginBottom="@dimen/_5sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/layout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/divider">
         <ImageView
             android:visibility="gone"
             android:id="@+id/ivArrowDown2"
@@ -195,7 +158,7 @@
             android:src="@drawable/ic_down_arrow"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             app:layout_constraintTop_toTopOf="@id/tvChange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/tvChange"/>
@@ -254,8 +217,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_1sdp"
-            app:layout_constraintTop_toBottomOf="@+id/tvUp"
+            app:layout_constraintTop_toBottomOf="@+id/tvLast"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

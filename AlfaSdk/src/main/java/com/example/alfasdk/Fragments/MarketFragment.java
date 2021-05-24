@@ -277,7 +277,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         marketListView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         marketListView.setHasFixedSize(true);
-
         marketListView.setAdapter(marketAdapter);
 
         listSearch.setAdapter(searchAdapter);

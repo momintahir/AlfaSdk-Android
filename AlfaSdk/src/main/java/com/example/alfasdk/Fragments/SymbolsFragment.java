@@ -28,9 +28,7 @@ import java.util.List;
 
 public class SymbolsFragment extends Fragment {
 
-//    @BindView(R.id.symbol_list)
     ListView symbol_list;
-//    @BindView(R.id.searchField)
     EditText searchField;
     List<Symbol> arrayList,filteredArraylist;
     boolean isSearched = false;
@@ -49,8 +47,7 @@ public class SymbolsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_symbols, container, false);
 //        ButterKnife.bind(this, view);
         symbol_list=view.findViewById(R.id.symbol_list);

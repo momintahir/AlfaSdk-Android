@@ -52,7 +52,7 @@ public class SymbolsAdapter extends BaseAdapter {
         if (view != null) {
             holder = (ViewHolder) view.getTag();
         } else {
-            view = inflater.inflate(R.layout.symbols_list_item, parent, false);
+            view = inflater.inflate(R.layout.item_list_symbol, parent, false);
             holder = new ViewHolder(view);
             view.setTag(holder);
         }
@@ -68,7 +68,7 @@ public class SymbolsAdapter extends BaseAdapter {
 
         holder.sym.setText(obj.getSymbol());
         holder.mar.setText(obj.getMarket());
-        holder.exc.setText(obj.getExchangeCode());
+        //holder.exc.setText(obj.getExchangeCode());
 
 
         return view;
@@ -79,19 +79,14 @@ public class SymbolsAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-//        @BindView(R.id.symbol_symbol)
         TextView sym;
-//        @BindView(R.id.symbol_market)
         TextView mar;
-//        @BindView(R.id.symbol_exchange)
         TextView exc;
 
-
         public ViewHolder(View view) {
-//            ButterKnife.bind(this, view);
             sym=view.findViewById(R.id.symbol_symbol);
             mar=view.findViewById(R.id.symbol_market);
-            exc=view.findViewById(R.id.symbol_exchange);
+            //exc=view.findViewById(R.id.symbol_exchange);
         }
     }
 }

@@ -90,6 +90,10 @@ public class ResearchPortalFragment extends Fragment {
                 startActivity(i);
             }
         });
+
+
+        Log.e(TAG, "Research Portal: ");
+
         return webView;
     }
 

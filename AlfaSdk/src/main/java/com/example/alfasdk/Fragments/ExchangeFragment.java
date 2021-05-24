@@ -26,6 +26,7 @@ import com.example.alfasdk.Models.ExchangeModel.Exchange;
 import com.example.alfasdk.Models.ExchangeModel.ExchangeResponse;
 import com.example.alfasdk.R;
 import com.example.alfasdk.Util.DividerItemDecoration;
+import com.example.alfasdk.Util.MyItemAnimator;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -41,7 +42,7 @@ public class ExchangeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ExchangeAdapter exchangesAdapter;
-    private RecyclerView.LayoutManager linearLayoutManager;
+    private LinearLayoutManager linearLayoutManager;
     private BroadcastReceiver mFeedReceiver;
     private List<Exchange> exchangeList = new ArrayList<>();
 
@@ -62,21 +63,18 @@ public class ExchangeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_exchange, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_exchange, container, false);
 
+        recyclerView=view.findViewById(R.id.exchange_list);
         linearLayoutManager = new LinearLayoutManager(getContext());
-        if (recyclerView.getLayoutManager() == null) {
-            recyclerView.setLayoutManager(linearLayoutManager);
-        }
-
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
         exchangesAdapter = new ExchangeAdapter(getActivity(), exchangeList, linearLayoutManager, this);
+        recyclerView.setItemAnimator(new MyItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         recyclerView.setAdapter(exchangesAdapter);
-
-
-        return recyclerView;
+        return view;
     }
 
     @Override
