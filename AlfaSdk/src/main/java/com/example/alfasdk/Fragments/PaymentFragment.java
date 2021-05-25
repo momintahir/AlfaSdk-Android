@@ -257,7 +257,7 @@ public class PaymentFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         if (toolbar != null) {
-            toolbar.setTitle("Payment Request");
+            toolbar.setTitle("Cash Withdrawal");
         }
         super.onResume();
     }

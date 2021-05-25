@@ -65,15 +65,11 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     private static int postionToRemove = -1;
     public Boolean shouldReload = false;
     public boolean isReloaded = false;
-//    @BindView(R.id.pager)
+
     ViewPager mPager;
-//    @BindView(R.id.market_list)
     RecyclerView marketListView;
-//    @BindView(R.id.editText)
     EditText etSearch;
-//    @BindView(R.id.search_list)
     ListView listSearch;
-//    @BindView(R.id.search_list_view)
     LinearLayout listSearch_view;
 
     ImageView cancel_search,left_arrow,right_arrow;
@@ -221,13 +217,12 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         Log.d("search_debug", "onResume: ");
         // when fragment goes onPause state, it clears the last of search symbols
         // readding those symbols in onResume
-        if(MyMainActivity.symbolsResponse != null)
-            setSearchSymbols();
+        if(MyMainActivity.symbolsResponse != null) setSearchSymbols();
 
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         if (toolbar != null) {
-            toolbar.setTitle("My Watch");
+            toolbar.setTitle("Market");
         }
         listSearch_view.setVisibility(View.GONE);
         super.onResume();
@@ -563,7 +558,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
     }
 
-//    @OnClick(R.id.cancel_search)
     public void cancelSearch(View view) {
         listSearch_view.setVisibility(View.GONE);
     }
@@ -693,15 +687,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
             showOptionsMenu(mItem, position);
         }
     }
-
-//    private void onPageFinished(int position) {
-//
-//        if (position == 0 || position == mPager.getAdapter().getCount() - 1) {
-//
-//            Alert.show(getActivity(), "", "No more records to display");
-//        }
-//
-//    }
 
     public interface OnMarketFragmentListener {
         void onMarketFragmentListener(int which, MarketSymbol sym);

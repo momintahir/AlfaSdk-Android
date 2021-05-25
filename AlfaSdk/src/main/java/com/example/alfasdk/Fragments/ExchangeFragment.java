@@ -83,7 +83,7 @@ public class ExchangeFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         if (toolbar != null) {
-            toolbar.setTitle("Exchanges");
+            toolbar.setTitle("Index Watch");
         }
         super.onResume();
     }

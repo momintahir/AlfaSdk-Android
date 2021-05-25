@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -116,25 +119,38 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:layout_marginLeft="7dp"
+            android:layout_marginStart="7dp"
             android:orientation="vertical">
 
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="35"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="NestedWeights">
 
-                <TextView
-                    android:id="@+id/portfolio_profitloss"
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:text="5,488.45"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="@color/black" />
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/ivArrow"
+                        android:layout_width="12dp"
+                        android:layout_height="11dp"
+                        android:layout_marginBottom="0.5dp"
+                        android:background="@drawable/arrow_green"/>
+                    <TextView
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:id="@+id/portfolio_profitloss"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5,488.45"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/black" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -177,12 +193,4 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/ivArrow"
-        android:layout_width="12dp"
-        android:layout_height="11dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="75dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/arrow_green"/>
 </RelativeLayout>

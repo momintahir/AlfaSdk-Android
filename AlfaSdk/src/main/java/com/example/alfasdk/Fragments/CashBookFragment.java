@@ -103,7 +103,7 @@ public class CashBookFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         if (toolbar != null) {
-            toolbar.setTitle("Cash Book");
+            toolbar.setTitle("Transaction History");
         }
         super.onResume();
     }

@@ -75,7 +75,6 @@
         android:id="@+id/top_symbol_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:background="@color/greyBar"
         android:orientation="horizontal"
         android:padding="5dp">
@@ -115,7 +114,9 @@
         android:id="@+id/portfolio_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp" />
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        />
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/piechart"

@@ -129,7 +129,7 @@ public class AccountFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         if (toolbar != null) {
-            toolbar.setTitle("Account");
+            toolbar.setTitle("Account Status");
         }
         super.onResume();
     }

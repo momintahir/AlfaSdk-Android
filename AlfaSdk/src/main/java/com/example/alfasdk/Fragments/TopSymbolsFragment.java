@@ -126,7 +126,7 @@ public class TopSymbolsFragment extends Fragment {
 
         if (toolbar != null) {
             // change1
-            toolbar.setTitle("Market Performers");
+            toolbar.setTitle("Top Symbols");
         }
         super.onResume();
     }

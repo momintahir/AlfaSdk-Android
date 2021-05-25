@@ -103,7 +103,7 @@ public class ResearchPortalFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         if (toolbar != null) {
-            toolbar.setTitle("Research Portal");
+            toolbar.setTitle("Explore Us");
         }
         super.onResume();
     }

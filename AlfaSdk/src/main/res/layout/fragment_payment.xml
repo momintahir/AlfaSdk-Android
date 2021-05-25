@@ -33,24 +33,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/gray_cornerd"
+            android:background="@drawable/alfa_red_cornerd"
             android:gravity="left|center_vertical"
             android:inputType="text"
             android:hint="@string/ClientCode"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/blackBackground"
-            android:textColorHint="@color/blinkGrey" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
         <LinearLayout
             android:id="@+id/search_list_view1"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_below="@+id/linearLayout10"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@color/white"
             android:clickable="true"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/cancel_search1"
@@ -84,14 +84,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/gray_cornerd"
+            android:background="@drawable/alfa_red_cornerd"
             android:editable="false"
             android:enabled="false"
             android:gravity="left|center_vertical"
             android:inputType="text"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/blackBackground"
-            android:textColorHint="@color/blinkGrey" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -177,13 +177,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@drawable/white_cornerd"
+            android:background="@drawable/alfa_red_cornerd"
             android:gravity="center"
             android:hint="@string/amount"
             android:inputType="numberDecimal"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/blackBackground"
-            android:textColorHint="@color/blinkGrey" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/greyBar" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -238,8 +238,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/button_blue"
             android:text="@string/submit"
+            android:background="@color/alfaRed"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:textColor="@color/white" />
     </LinearLayout>
 

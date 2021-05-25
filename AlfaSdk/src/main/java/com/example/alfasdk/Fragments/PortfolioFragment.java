@@ -65,29 +65,29 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     private static int[] COLORS = new int[]{Color.GREEN, Color.BLUE, Color.MAGENTA, Color.CYAN};
     int[] pieChartValues = {25, 15, 20, 40};
     float values[] = {700, 400, 100, 500, 600};
-//    @BindView(R.id.etclientcode)
+
     EditText clientcode;
-//    @BindView(R.id.portfolio_list)
     RecyclerView portfolio_list;
-//    @BindView(R.id.search_list1)
     ListView listSearch1;
-//    @BindView(R.id.search_list_view1)
     LinearLayout listSearch_view1;
-//    @BindView(R.id.piechart)
     PieChart pieChart;
 
     ImageView cancel_search1;
     ArrayList<String> clientlist;
     public static final int[] chartColors = {
-            Color.rgb(193, 37, 82), Color.rgb(255, 102, 0), Color.rgb(245, 199, 0),
-            Color.rgb(106, 150, 31), Color.rgb(179, 100, 53), Color.rgb(207, 248, 246),
-            Color.rgb(148, 212, 212), Color.rgb(136, 180, 187), Color.rgb(118, 174, 175),
-            Color.rgb(42, 109, 130), Color.rgb(217, 80, 138), Color.rgb(254, 149, 7),
-            Color.rgb(254, 247, 120), Color.rgb(106, 167, 134), Color.rgb(53, 194, 209),
-            Color.rgb(64, 89, 128), Color.rgb(149, 165, 124), Color.rgb(217, 184, 162),
-            Color.rgb(191, 134, 134), Color.rgb(179, 48, 80), Color.rgb(192, 255, 140),
-            Color.rgb(255, 247, 140), Color.rgb(255, 208, 140), Color.rgb(140, 234, 255),
-            Color.rgb(255, 140, 157)
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37), Color.rgb(178, 41, 37),
+            Color.rgb(178, 41, 37)
     };
 
 
@@ -114,14 +114,13 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         if (toolbar != null) {
-            toolbar.setTitle("Portfolio Summary");
+            toolbar.setTitle("My Portfolio");
         }
         super.onResume();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_portfolio, container, false);
 //        ButterKnife.bind(this, view);
         clientcode=view.findViewById(R.id.etclientcode);
@@ -162,6 +161,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     private void setupViews() {
 
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -210,7 +210,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
         // ((MainActivity) getActivity()).portfolioRequestRequest();
     }
-//    @OnClick(R.id.cancel_search1)
+
     public void cancelSearch(View view) {
         listSearch_view1.setVisibility(View.GONE);
     }
@@ -296,6 +296,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             Alert.show(getActivity(), getString(R.string.app_name), "You do not have any portfolio yet.");
         }
     }
+
     private void setUpPieChart() {
 
         pieChart.setUsePercentValues(true);

@@ -289,7 +289,6 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
                 navMenuList.add(new Menu("Market", R.drawable.iconmarket2x, false));
             }
             if (TrnCodes.contains("OM19")) {
-                //   navMenuList.add(new Menu("Exchange", R.drawable.marketicon2x, false));
                 navMenuList.add(new Menu("Index Watch", R.drawable.marketicon2x, false));
             }
             if (TrnCodes.contains("OM24")) {
@@ -325,7 +324,6 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
             if (TrnCodes.contains("OM18")) {
                 navMenuList.add(new Menu("Profile", R.drawable.profileicon2x, false));
             }
-
             if (TrnCodes.contains("OM02")) {
                 navMenuList.add(new Menu("Account Status", R.drawable.account2x, false));
             }
@@ -2335,4 +2333,5 @@ public class MyMainActivity extends BaseActivity implements NavAdapter.OnMenuInt
         }
 
     }
+
 }

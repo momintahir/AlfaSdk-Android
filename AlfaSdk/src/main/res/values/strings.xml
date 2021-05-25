@@ -28,7 +28,7 @@
     <string name="new_pin">New Pin (4 characters)</string>
     <string name="confirm_pin">Confirm New Pin</string>
     <string name="cash_withdrawal">Cash Withdrawal</string>
-    <string name="amount">Amount</string>
+    <string name="amount">Enter Amount</string>
     <string name="developed_by">Developed by: Softech Systems</string>
     <string name="deleted">Deleted</string>
     <string name="undo">Undo</string>

@@ -469,7 +469,7 @@ public class TradeFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         if (toolbar != null) {
-            toolbar.setTitle("Trade");
+            toolbar.setTitle("Order");
         }
 
         listSearch_view.setVisibility(View.GONE);

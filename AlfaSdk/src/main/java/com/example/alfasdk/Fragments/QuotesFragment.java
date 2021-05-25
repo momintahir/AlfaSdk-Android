@@ -142,7 +142,7 @@ QuotesFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         if (toolbar != null) {
-            toolbar.setTitle("Quotes");
+            toolbar.setTitle("Symbol Summary");
         }
 
         listSearch_view.setVisibility(View.GONE);
