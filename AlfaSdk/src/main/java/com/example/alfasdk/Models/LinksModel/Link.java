@@ -55,4 +55,11 @@ public class Link {
         this.link = link;
     }
 
+    @Override
+    public String toString() {
+        return "Link{" +
+                "title='" + title + '\'' +
+                ", link='" + link + '\'' +
+                '}';
+    }
 }

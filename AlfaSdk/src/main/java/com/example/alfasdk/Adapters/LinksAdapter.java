@@ -57,24 +57,16 @@ public class LinksAdapter extends BaseAdapter {
             view.setTag(holder);
         }
 
-
         Link obj = linkListLOL.get(position);
-
-        holder.sym.setText(obj.getTitle());
-
-
+        holder.sym.setText((position+1)+". "+obj.getTitle());
         return view;
     }
 
 
-    public class ViewHolder {
+    public static class ViewHolder {
 
-//        @BindView(android.R.id.text1)
         TextView sym;
-
-
         public ViewHolder(View view) {
-//            ButterKnife.bind(this, view);
             sym=view.findViewById(R.id.text1);
         }
 

@@ -10,7 +10,7 @@ import com.example.alfasdk.SdkInterface;
 public class MainActivityApp extends MyLoginActivity {
 
     Button btnLogin;
-    private String token="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MjEwMTUyNTcyNTg3IiwiZXhwIjoxNjIxOTUzOTcwLCJpYXQiOjE2MjE5MzU5NzB9.Py--lQYKyMNRgYDNTqUMbHTcaivztG8EaRUaRfBuvGCU05JOP3zjH8DxWiYgz9PgjDAuHTQFIC0h2Mx9YfVxQg";
+    private String token="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MjEwMTUyNTcyNTg3IiwiZXhwIjoxNjIyNTQ0NzYxLCJpYXQiOjE2MjI1MjY3NjF9.xosPJufisZdjf17iM79-vdVEg6WX0V72wKyGl3uEL_XdItpJSBE5iXuLy23fV_JgIb2aSrbNeWfaL-yzuYzPQA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,4 +22,5 @@ public class MainActivityApp extends MyLoginActivity {
             sdkInterface.login(v, token, "PK54ALFH0005001004799205","4210152572587");
         });
     }
+
 }
